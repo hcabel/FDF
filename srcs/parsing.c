@@ -6,12 +6,12 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:06:49 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/11 23:59:50 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/12 11:42:19 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/*
 static int		check_file(char *ln, t_map *map)
 {
 	int		i;
@@ -34,7 +34,7 @@ static int		check_file(char *ln, t_map *map)
 		return (1);
 	map->nb_nb = nb_nb;
 	return (0);
-}
+}*/
 
 static t_point	*getref(t_point *map, int x, int y)
 {
@@ -75,8 +75,6 @@ t_point			*parsing(t_map *map, int fd)
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
 		v->x = 0;
-		if (check_file(line, map))
-			finish("Error file !1");
 		stock = ft_strsplit(line, ' ');
 		while (stock[(int)v->x])
 		{
