@@ -6,7 +6,7 @@
 #    By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/02 18:27:31 by hcabel            #+#    #+#              #
-#    Updated: 2019/05/11 20:54:07 by hcabel           ###   ########.fr        #
+#    Updated: 2019/05/12 11:50:27 by hcabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,6 @@ $(OBJECT_REP)/%.o: $(SOURCES_REP)/%.c includes/fdf.h Makefile
 mkdir:
 	mkdir -p $(OBJECT_REP)
 
-make:
-	make -C libft/
-
 clean:
 	rm -rf $(OBJECT_REP)
 
@@ -59,6 +56,12 @@ fclean: clean
 	rm -f $(NAME)
 
 remake:
-	make -C libft/ re
+	make -C minilibx re
+	make -C libft re
+
+make:
+	git clone https://github.com/hcabel/libft.git libft || git pull
+	make -C libft
+	make -C minilibx
 
 re: fclean remake all
