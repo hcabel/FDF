@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/11 14:38:48 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 13:50:47 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ double		get_percent(int start, int end, int current)
 
 	if (start == end)
         return (start);
+	else if (current >= end)
+		return (1);
+	else if (current <= start)
+		return (0);
     placement = current - start;
     distance = end - start;
     return ((distance == 0) ? 1.0 : (placement / distance));

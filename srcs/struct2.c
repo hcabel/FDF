@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/17 19:00:57 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 12:14:56 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_cam	*init_cam(void)
 	cam->height_z = 1;
 	cam->offsetx = WIN_SIZE_X / 2 + (HUD_SIZE / 2);
 	cam->offsety = WIN_SIZE_Y / 2;
-	cam->x = 0.1;
-	cam->y = 0.1;
+	cam->x = 0;
+	cam->y = 0;
 	return (cam);
 }
 

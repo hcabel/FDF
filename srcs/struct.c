@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:28:50 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/17 19:03:54 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 13:24:13 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,10 @@ t_point		*newlink(t_vector *v)
 	if (!(new = (t_point*)malloc(sizeof(t_point))))
 		finish("Allocation failed");
 	new->v = v;
-	new->v->color = 0x540099 - (v->z * 15);
+	new->v->color = 0x540099;
 	new->n1 = NULL;
 	new->n2 = NULL;
 	new->n1_isprint = 0;
 	new->n2_isprint = 0;
 	return (new);
-
 }

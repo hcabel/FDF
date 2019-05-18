@@ -6,7 +6,7 @@
 #    By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/21 11:09:36 by hcabel            #+#    #+#              #
-#    Updated: 2019/05/18 11:34:53 by hcabel           ###   ########.fr        #
+#    Updated: 2019/05/18 12:25:17 by hcabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,3 +92,6 @@ update:
 
 make:
 	make -C libft
+
+norm:
+	norminette $(SOURCES_REP)
