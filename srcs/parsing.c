@@ -6,59 +6,62 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:06:49 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/12 11:42:19 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 11:34:55 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-/*
+
+static int		count_point(char *ln)
+{
+	int i;
+	int result;
+
+	i = 0;
+	result = 0;
+	while (ln[i])
+	{
+		if (ft_isdigit(ln[i]))
+		{
+			result++;
+			while (ft_isdigit(ln[i]))
+				i++;
+		}
+		i++;
+	}
+	return (result);
+}
+
 static int		check_file(char *ln, t_map *map)
 {
-	int		i;
-	int		nb_nb;
+	int		nb_point;
 
-	i = -1;
-	nb_nb = 0;
-	while (ln[++i])
-	{
-		if (!ft_isdigit(ln[i]) && ln[i] != ' ')
-			return(1);
-		else if (ft_isdigit(ln[i])
-			&& (!(ft_isprint(ln[i - 1]) || ln[i - 1] == ' ')))
-			nb_nb++;
-	}
-	printf("test %d\n", nb_nb);
-	if (map->nb_nb == 0 && nb_nb > 1)
-		map->nb_nb = nb_nb;
-	if (ft_strlen(ln) <= 2 || map->nb_nb != nb_nb)
-		return (1);
-	map->nb_nb = nb_nb;
+	nb_point = count_point(ln);
+	printf("%d", nb_point);
+	if (nb_point != map->nb_nb && map->nb_nb != -1)
+		finish("");
 	return (0);
-}*/
+}
 
 static t_point	*getref(t_point *map, int x, int y)
 {
 	t_point *ref;
 
 	ref = map;
-	while (x > 0)
-	{
-		ref = ref->n1;
-		x--;
-	}
-	while (y > 0)
-	{
-		ref = ref->n2;
-		y--;
-	}
+	while (x-- > 0)
+		if (ref->n1)
+			ref = ref->n1;
+	while (y-- > 0)
+		if (ref->n2)
+			ref = ref->n2;
 	return (ref);
 }
 
 static void		addtomap(t_point *map, t_point *new)
 {
-	if (new->v->x - 1 >= 0)
+	if (new->v->x > 0)
 		getref(map, new->v->x - 1, new->v->y)->n1 = new;
-	if (new->v->y - 1 >= 0)
+	if (new->v->y > 0)
 		getref(map, new->v->x, new->v->y - 1)->n2 = new;
 }
 
@@ -74,6 +77,7 @@ t_point			*parsing(t_map *map, int fd)
 	v = init_vector(0, 0, 0);
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
+		//check_file(line, map);
 		v->x = 0;
 		stock = ft_strsplit(line, ' ');
 		while (stock[(int)v->x])
@@ -94,5 +98,7 @@ t_point			*parsing(t_map *map, int fd)
 		finish("Error file !");
 	map->size_x = v->x - 1;
 	map->size_y = v->y - 1;
+	close(fd);
+	free(v);
 	return (start);
 }

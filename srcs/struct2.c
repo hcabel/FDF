@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/11 23:17:53 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/17 19:00:57 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ t_info	*init_info(char *argv)
 	info->mouse = init_mouse();
 	info->map = init_map(argv);
 	i = 0;
-	while (info->map->size_x * (i + 2) < WIN_SIZE_X - HUD_SIZE
-		&& info->map->size_y * (i + 2) < WIN_SIZE_Y)
+	while (info->map->size_x * (i + 5) < WIN_SIZE_X - HUD_SIZE
+		&& info->map->size_y * (i + 5) < WIN_SIZE_Y)
 		i++;
 	info->cam->zoom = i;
 	return (info);

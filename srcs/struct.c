@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:28:50 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/11 23:55:24 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/17 19:03:54 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_map		*init_map(char *argv)
 		return (0);
 	map->size_x = 0;
 	map->size_y = 0;
-	map->nb_nb = 0;
+	map->nb_nb = -1;
 	map->min_z = 0;
 	map->max_z = 0;
 	map->start = parsing(map, open(argv, O_RDONLY));

@@ -6,11 +6,11 @@
 #    By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/21 11:09:36 by hcabel            #+#    #+#              #
-#    Updated: 2019/05/16 15:33:43 by hcabel           ###   ########.fr        #
+#    Updated: 2019/05/18 11:34:53 by hcabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DEBUG			=	no
+DEBUG			=	yes
 DL				=	yes
 
 ifeq ($(DEBUG), yes) 
@@ -89,3 +89,6 @@ update:
 	echo "\n\033[0;35mUpdate \033[0;32m[\033[0;33mlibft\033[0;32m]\033[0;35m\n"
 	$(UPDATE)
 	$(CHECK)
+
+make:
+	make -C libft

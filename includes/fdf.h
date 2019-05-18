@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/11 23:53:51 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 11:50:59 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
+# include <unistd.h>
 # include <math.h>
 # include <stdio.h> // DEBUG
 

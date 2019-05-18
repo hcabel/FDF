@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:51:30 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/11 22:44:06 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 11:50:17 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ void	add_hud_string(t_info *info)
 		"left button and right button");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 100, 175, 0xFFFFFF,
 		"drag and drop");
+	mlx_string_put(info->mlx_ptr, info->win_ptr, 50, 225, 0xFFFFFF,
+		"KeyBoard :");
+	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 250, 0xFFFFFF,
+		"Up arrow");
+	mlx_string_put(info->mlx_ptr, info->win_ptr, 100, 275, 0xFFFFFF,
+		"increase height");
+	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 300, 0xFFFFFF,
+		"Down arrow");
+	mlx_string_put(info->mlx_ptr, info->win_ptr, 100, 325, 0xFFFFFF,
+		"decrease height");
 }
 
 void	add_hud(char **string)
