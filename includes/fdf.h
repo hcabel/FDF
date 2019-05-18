@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 13:42:23 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 17:14:08 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct		s_cam
 	double			zoom;
 	double			speed;
 	double			height_z;
+	int				color_modifier;
 	void			(*projection)(t_vector*, t_vector*, struct s_info*);
 }					t_cam;
 

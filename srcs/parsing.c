@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:06:49 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 11:34:55 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 17:14:20 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int		check_file(char *ln, t_map *map)
 	int		nb_point;
 
 	nb_point = count_point(ln);
-	printf("%d", nb_point);
 	if (nb_point != map->nb_nb && map->nb_nb != -1)
 		finish("");
 	return (0);

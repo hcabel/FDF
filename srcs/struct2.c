@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 12:14:56 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 17:14:48 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_cam	*init_cam(void)
 	cam->offsety = WIN_SIZE_Y / 2;
 	cam->x = 0;
 	cam->y = 0;
+	cam->color_modifier = 1;
 	return (cam);
 }
 

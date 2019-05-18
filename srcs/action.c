@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/11 23:00:58 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 16:12:28 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,15 @@ int		key_press(int keycode, t_info *info)
 		info->cam->height_z -= 0.01 * info->cam->speed;
 	if (keycode == ESC)
 		finish("End !");
-	if (keycode == SPACE && info->cam->projection == parallele_view)
-		info->cam->projection = isometric_view;
-	else if (keycode == SPACE && info->cam->projection == isometric_view)
-		info->cam->projection = parallele_view;
+	if (keycode == SPACE)
+	{
+		info->cam->x = 0;
+		info->cam->y = 0;
+	}
+	if (keycode == 84)
+		info->cam->color_modifier--;
+	if (keycode == 91)
+		info->cam->color_modifier++;
 	info->cam->speed += 0.25;
 	updade_display(info);
 	return (0);

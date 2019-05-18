@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 13:22:21 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 13:24:45 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/18 16:20:39 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_vector	rotate(t_vector p, t_cam *r)
 	z = v.z;
 	v.y = cos(r->x) * y - sin(r->x) * z;
 	v.z = sin(r->x) * y + cos(r->x) * z;
-	v.color = p.color;
 	return (v);
 }
 
@@ -56,27 +55,7 @@ void		isometric_view(t_vector *start, t_vector *end, t_info *info)
 	start2.y += info->cam->offsety;
 	end2.x += info->cam->offsetx;
 	end2.y += info->cam->offsety;
-	line_trace(start2, end2, info);
-}
-
-void		parallele_view(t_vector *start, t_vector *end, t_info *info)
-{
-	t_vector start2;
-	t_vector end2;
-
-	start2 = *start;
-	end2 = *end;
-	start2.x -= (double)(info->map->size_x) / 2;
-	start2.x *= info->cam->zoom;
-	start2.x += info->cam->offsetx;
-	start2.y -= (double)(info->map->size_y) / 2;
-	start2.y *= info->cam->zoom;
-	start2.y += info->cam->offsety;
-	end2.x -= (double)(info->map->size_x) / 2;
-	end2.x *= info->cam->zoom;
-	end2.x += info->cam->offsetx;
-	end2.y -= (double)(info->map->size_y) / 2;
-	end2.y *= info->cam->zoom;
-	end2.y += info->cam->offsety;
+	start2.color = (start->color - (start->z * 20)) * info->cam->color_modifier;
+	end2.color = (end->color - (end->z * 20)) * info->cam->color_modifier;
 	line_trace(start2, end2, info);
 }
