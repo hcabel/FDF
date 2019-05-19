@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 17:14:08 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/19 15:51:52 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_vector
 	double			y;
 	double			z;
 	int				color;
+	int				color_is_define;
 }					t_vector;
 
 typedef struct		s_point
@@ -71,6 +72,7 @@ typedef struct		s_info
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
+	int				basecolor;
 	struct s_img	*img;
 	struct s_map	*map;
 	struct s_cam	*cam;
@@ -148,22 +150,22 @@ int					mouse_move(int x, int y, t_info *info);
 /*
 **	struct.c
 */
-t_vector			*init_vector(double x, double y, double z);
+t_vector			*init_vector(double x, double y, double z, t_info *info);
 t_vector			*cp_vector(t_vector v2);
-t_map				*init_map(char *argv);
+t_map				*init_map(char *argv, t_info *info);
 t_point				*newlink(t_vector *v);
 
 /*
 **	struct2.c
 */
-t_info				*init_info(char *argv);
+t_info				*init_info(int argc, char **argv);
 t_mouse				*init_mouse(void);
 t_cam				*init_cam(void);
 
 /*
 **	parsing.c
 */
-t_point				*parsing(t_map *map, int fd);
+t_point				*parsing(t_map *map, int fd, t_info *info);
 
 /*
 **	projection.c
@@ -201,6 +203,7 @@ t_img				*init_image(t_info *info);
 /*
 **	color.c
 */
+int					hexa2int(char *hexa);
 double 				get_percent(int start, int end, int current);
 int					set_color(int c1, int c2, double percent);
 

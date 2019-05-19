@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 11:46:05 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 12:13:21 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/19 18:00:51 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int				finish(char *reason)
 {
 	if (*reason == '\0')
-		ft_putendl("usage : ./fdf sourcesfile  |  exemple ./fdf maps/42.fdf");
+		ft_putendl("usage : ./fdf [sourcesfile] [hexa color]");
 	else
 		ft_putendl_fd(reason, 2);
 	exit(0);
@@ -26,9 +26,9 @@ int				main(int argc, char **argv)
 {
 	t_info	*info;
 
-	if (argc != 2)
+	if (argc < 2 || argc > 3)
 		finish("");
-	info = init_info(argv[1]);
+	info = init_info(argc, argv);
 	updade_display(info);
 	mlx_hook(info->win_ptr, RED_CROSS, 0, finish, "End !");
 	mlx_hook(info->win_ptr, KEY_PRESS, 0, key_press, info);

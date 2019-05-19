@@ -6,13 +6,13 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:28:50 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 17:14:51 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/19 16:28:03 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_vector	*init_vector(double x, double y, double z)
+t_vector	*init_vector(double x, double y, double z, t_info *info)
 {
 	t_vector *v;
 
@@ -21,7 +21,8 @@ t_vector	*init_vector(double x, double y, double z)
 	v->x = x;
 	v->y = y;
 	v->z = z;
-	v->color = 0xF40099; //0x1FFFFF
+	v->color_is_define = 0;
+	v->color = info->basecolor;
 	return (v);
 }
 
@@ -34,11 +35,12 @@ t_vector	*cp_vector(t_vector v2)
 	v->x = v2.x;
 	v->y = v2.y;
 	v->z = v2.z;
-	v->color = v2.color;
+	v->color_is_define = v2.color_is_define;
+	v->color = v2.color - (v2.z * 50);
 	return (v);
 }
 
-t_map		*init_map(char *argv)
+t_map		*init_map(char *argv, t_info *info)
 {
 	t_map	*map;
 
@@ -49,7 +51,7 @@ t_map		*init_map(char *argv)
 	map->nb_nb = -1;
 	map->min_z = 0;
 	map->max_z = 0;
-	map->start = parsing(map, open(argv, O_RDONLY));
+	map->start = parsing(map, open(argv, O_RDONLY), info);
 	return (map);
 }
 

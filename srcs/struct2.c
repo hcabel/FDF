@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 17:14:48 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/19 18:01:19 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ t_mouse	*init_mouse(void)
 	return (mouse);
 }
 
-t_info	*init_info(char *argv)
+t_info	*init_info(int argc, char **argv)
 {
 	t_info	*info;
-	int i;
+	int		i;
 
 	if (!(info = (t_info*)malloc(sizeof(t_info))))
 		finish("Allocation failed");
@@ -55,7 +55,8 @@ t_info	*init_info(char *argv)
 	info->img = init_image(info);
 	info->cam = init_cam();
 	info->mouse = init_mouse();
-	info->map = init_map(argv);
+	info->basecolor = (argc == 3 ? hexa2int(argv[2]) : 0x1FFFFF);
+	info->map = init_map(argv[1], info);
 	i = 0;
 	while (info->map->size_x * (i + 5) < WIN_SIZE_X - HUD_SIZE
 		&& info->map->size_y * (i + 5) < WIN_SIZE_Y)

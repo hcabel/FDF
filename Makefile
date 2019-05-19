@@ -6,7 +6,7 @@
 #    By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/21 11:09:36 by hcabel            #+#    #+#              #
-#    Updated: 2019/05/18 12:25:17 by hcabel           ###   ########.fr        #
+#    Updated: 2019/05/19 18:17:37 by hcabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SOURCES			=	main.c			\
 					image.c			\
 					line.c			\
 					color.c			\
-					HUD.c
+					hud.c
 
 INCLUDES		=	-I includes/ -I libft/includes
 LIB				=	-L /usr/local/lib/

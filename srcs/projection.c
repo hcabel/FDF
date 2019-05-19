@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 13:22:21 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 16:20:39 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/19 19:22:58 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,31 @@ t_vector	rotate(t_vector p, t_cam *r)
 	return (v);
 }
 
+static void	setup(t_vector *v, int color, int define, t_info *info)
+{
+	int tmp;
+
+	v->x -= (double)(info->map->size_x) / 2;
+	v->y -= (double)(info->map->size_y) / 2;
+	v->z *= (double)info->cam->height_z;
+	tmp =  (fabs(v->z) == 0 ? 1 : v->z);
+	v->z -= (double)(info->map->min_z + info->map->max_z) / 2;
+	*v = rotate(*v, info->cam);
+	v->x *= info->cam->zoom;
+	v->y *= info->cam->zoom;
+	v->x += info->cam->offsetx;
+	v->y += info->cam->offsety;
+	v->color_is_define = define;
+	if (v->color_is_define == 1)
+		v->color = color;
+	else if ((info->basecolor / info->cam->color_modifier) + (tmp * tmp) >= 0xFFFFFF)
+		v->color = 0xFFFFFF;
+	else if ((info->basecolor / info->cam->color_modifier) + (tmp * tmp) <= 0x0)
+		v->color = 0x0;
+	else
+		v->color = (info->basecolor / info->cam->color_modifier) + (tmp * tmp);
+}
+
 void		isometric_view(t_vector *start, t_vector *end, t_info *info)
 {
 	t_vector	start2;
@@ -37,25 +62,7 @@ void		isometric_view(t_vector *start, t_vector *end, t_info *info)
 
 	start2 = *start;
 	end2 = *end;
-	start2.x -= (double)(info->map->size_x) / 2;
-	start2.y -= (double)(info->map->size_y) / 2;
-	end2.x -= (double)(info->map->size_x) / 2;
-	end2.y -= (double)(info->map->size_y) / 2;
-	end2.z *= (double)info->cam->height_z;
-	start2.z *= (double)info->cam->height_z;
-	start2.z -= (double)(info->map->min_z + info->map->max_z) / 2;
-	end2.z -= (double)(info->map->min_z + info->map->max_z) / 2;
-	start2 = rotate(start2, info->cam);
-	end2 = rotate(end2, info->cam);
-	start2.x *= info->cam->zoom;
-	start2.y *= info->cam->zoom;
-	end2.x *= info->cam->zoom;
-	end2.y *= info->cam->zoom;
-	start2.x += info->cam->offsetx;
-	start2.y += info->cam->offsety;
-	end2.x += info->cam->offsetx;
-	end2.y += info->cam->offsety;
-	start2.color = (start->color - (start->z * 20)) * info->cam->color_modifier;
-	end2.color = (end->color - (end->z * 20)) * info->cam->color_modifier;
+	setup(&start2, start->color, start->color_is_define, info);
+	setup(&end2, end->color, end->color_is_define, info);
 	line_trace(start2, end2, info);
 }
