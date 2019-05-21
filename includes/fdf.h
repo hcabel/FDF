@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/19 15:51:52 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 16:04:17 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-# include <stdio.h> // DEBUG
+# include <stdio.h> // DEBUG <--------------------------------------------
 
 typedef struct		s_vector
 {
@@ -104,6 +104,8 @@ typedef struct		s_line
 	int				err2;
 }					t_line;
 
+int					hexa_decress(int hexa, int nb);
+
 # define FDF_END 0
 
 /*
@@ -113,10 +115,12 @@ typedef struct		s_line
 # define WIN_SIZE_X 1920
 # define WIN_SIZE_Y 1080
 # define HUD_SIZE 400
+
 /*
 **	HUD_SIZE IS BETTER >= 400
 */
 # define HUD_BORDER_SIZE 5
+
 /*
 **	To here
 */
@@ -130,6 +134,8 @@ typedef struct		s_line
 # define UP 126
 # define DOWN 125
 # define SPACE 49
+# define TWO 84
+# define EIGHT 91
 
 # define RED_CROSS 17
 # define KEY_PRESS 2
@@ -170,10 +176,10 @@ t_point				*parsing(t_map *map, int fd, t_info *info);
 /*
 **	projection.c
 */
-void				parallele_view(t_vector *start, t_vector *end,
-						t_info *info);
-void				isometric_view(t_vector *start,  t_vector *end,
-						t_info *info);
+void				parallele_view(t_vector *start, t_vector *end
+						, t_info *info);
+void				isometric_view(t_vector *start, t_vector *end
+						, t_info *info);
 
 /*
 **	main.c
@@ -192,7 +198,6 @@ void				execute_link(int n, t_point *current, t_info *info);
 */
 void				line_trace(t_vector start, t_vector end, t_info *info);
 
-
 /*
 **	image.c
 */
@@ -204,7 +209,7 @@ t_img				*init_image(t_info *info);
 **	color.c
 */
 int					hexa2int(char *hexa);
-double 				get_percent(int start, int end, int current);
+double				get_percent(int start, int end, int current);
 int					set_color(int c1, int c2, double percent);
 
 /*
@@ -212,5 +217,10 @@ int					set_color(int c1, int c2, double percent);
 */
 void				add_hud(char **string);
 void				add_hud_string(t_info *info);
+
+/*
+**	checkfile.c
+*/
+int					check_file(char *ln, t_map *map);
 
 #endif

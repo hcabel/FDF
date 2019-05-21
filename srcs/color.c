@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/19 18:01:08 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/20 13:22:20 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			hexa2int(char *hexa)
 	while (((hexa[i] >= '0' && hexa[i] <= '9')
 		|| (hexa[i] >= 'A' && hexa[i] <= 'F')
 		|| (hexa[i] >= 'a' && hexa[i] <= 'f')) && i < 9)
-		result = result * 15 + result + char2int(hexa[i++]);
+		result = result * 16 + char2int(hexa[i++]);
 	return (result);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/19 18:01:19 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/20 10:43:53 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_cam	*init_cam(void)
 	cam->height_z = 1;
 	cam->offsetx = WIN_SIZE_X / 2 + (HUD_SIZE / 2);
 	cam->offsety = WIN_SIZE_Y / 2;
-	cam->x = 0;
-	cam->y = 0;
+	cam->x = -0.5;
+	cam->y = 0.5;
 	cam->color_modifier = 1;
 	return (cam);
 }
@@ -55,11 +55,11 @@ t_info	*init_info(int argc, char **argv)
 	info->img = init_image(info);
 	info->cam = init_cam();
 	info->mouse = init_mouse();
-	info->basecolor = (argc == 3 ? hexa2int(argv[2]) : 0x1FFFFF);
+	info->basecolor = (argc == 3 ? hexa2int(argv[2]) : 0xFFFFFF);
 	info->map = init_map(argv[1], info);
 	i = 0;
-	while (info->map->size_x * (i + 5) < WIN_SIZE_X - HUD_SIZE
-		&& info->map->size_y * (i + 5) < WIN_SIZE_Y)
+	while (info->map->size_x * (i + 50) < WIN_SIZE_X - HUD_SIZE
+		&& info->map->size_y * (i + 50) < WIN_SIZE_Y)
 		i++;
 	info->cam->zoom = i;
 	return (info);

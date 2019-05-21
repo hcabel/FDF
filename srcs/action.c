@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/18 16:12:28 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 11:56:47 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		key_press(int keycode, t_info *info)
 		info->cam->x = 0;
 		info->cam->y = 0;
 	}
-	if (keycode == 84)
+	if (keycode == TWO)
 		info->cam->color_modifier--;
-	if (keycode == 91)
+	if (keycode == EIGHT)
 		info->cam->color_modifier++;
 	info->cam->speed += 0.25;
 	updade_display(info);

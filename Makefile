@@ -6,7 +6,7 @@
 #    By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/21 11:09:36 by hcabel            #+#    #+#              #
-#    Updated: 2019/05/19 18:17:37 by hcabel           ###   ########.fr        #
+#    Updated: 2019/05/20 10:48:01 by hcabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,10 @@ endif
 NAME			=	fdf
 
 OBJECT_REP		=	objects
+INCLUDE_REP		=	includes
 SOURCES_REP		=	srcs
+
+INCLUDES_FILE	=	fdf.h
 
 SOURCES			=	main.c			\
 					parsing.c		\
@@ -50,9 +53,10 @@ SOURCES			=	main.c			\
 					image.c			\
 					line.c			\
 					color.c			\
-					hud.c
+					hud.c			\
+					checkfile.c
 
-INCLUDES		=	-I includes/ -I libft/includes
+INCLUDES		=	-I $(INCLUDE_REP)/ -I libft/$(INCLUDE_REP)
 LIB				=	-L /usr/local/lib/
 FRAMEWORK		=	-framework OpenGL -framework Appkit
 
@@ -71,7 +75,7 @@ $(NAME): mkdir make $(OBJECTS)
 mkdir:
 	mkdir -p $(OBJECT_REP)
 
-$(OBJECT_REP)/%.o: $(SOURCES_REP)/%.c includes/fdf.h Makefile
+$(OBJECT_REP)/%.o: $(SOURCES_REP)/%.c $(INCLUDE_REP)/$(INCLUDES_FILE) Makefile
 	gcc $(FLAGS) -o $@ $(INCLUDES) -c $<
 
 clean:
@@ -95,3 +99,4 @@ make:
 
 norm:
 	norminette $(SOURCES_REP)
+	norminette $(INCLUDE_REP)

@@ -6,41 +6,11 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:06:49 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/19 18:36:05 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 16:01:11 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static int		count_point(char *ln)
-{
-	int i;
-	int result;
-
-	i = 0;
-	result = 0;
-	while (ln[i])
-	{
-		if (ft_isdigit(ln[i]))
-		{
-			result++;
-			while (ft_isdigit(ln[i]))
-				i++;
-		}
-		i++;
-	}
-	return (result);
-}
-
-static int		check_file(char *ln, t_map *map)
-{
-	int		nb_point;
-
-	nb_point = count_point(ln);
-	if (nb_point != map->nb_nb && map->nb_nb != -1)
-		finish("");
-	return (0);
-}
 
 static t_point	*getref(t_point *map, int x, int y)
 {
@@ -59,8 +29,8 @@ static t_point	*getref(t_point *map, int x, int y)
 static t_vector	*init(t_map *map, t_point **start, t_vector *v, char **stock)
 {
 	t_point		*tmp;
-	int			i;
 	t_vector	*v2;
+	int			i;
 
 	v2 = cp_vector(*v);
 	v2->z = ft_atoi(stock[(int)v2->x]);
@@ -99,14 +69,11 @@ t_point			*parsing(t_map *map, int fd, t_info *info)
 	v = init_vector(0, 0, 0, info);
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
-		//check_file(line, map);
+		check_file(line, map);
 		v->x = 0;
 		stock = ft_strsplit(line, ' ');
-		while (stock[(int)v->x])
-		{
+		while (stock[(int)v->x++])
 			v = init(map, &start, v, stock);
-			v->x++;
-		}
 		v->y++;
 	}
 	if (ret == -1)
