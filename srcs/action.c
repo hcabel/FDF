@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 11:56:47 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 17:50:12 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		key_press(int keycode, t_info *info)
 	if (keycode == DOWN)
 		info->cam->height_z -= 0.01 * info->cam->speed;
 	if (keycode == ESC)
-		finish("End !");
+		finish(info, "End !");
 	if (keycode == SPACE)
 	{
 		info->cam->x = 0;
@@ -38,7 +38,7 @@ int		key_release(int keycode, t_info *info)
 {
 	info->cam->speed = 1;
 	if (keycode == ESC)
-		finish("End !");
+		finish(info, "End !");
 	updade_display(info);
 	return (0);
 }

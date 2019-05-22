@@ -6,22 +6,11 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 17:35:04 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/11 15:10:35 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 17:58:10 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-t_img	*del_image(t_info *info)
-{
-	if (info->img != NULL)
-	{
-		if (info->img->ptr != NULL)
-			mlx_destroy_image(info->mlx_ptr, info->img->ptr);
-		ft_memdel((void **)&info->img);
-	}
-	return (NULL);
-}
 
 void	fill_pixel(t_img *image, int x, int y, int color)
 {

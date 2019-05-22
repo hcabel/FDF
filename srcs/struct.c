@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:28:50 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/20 10:55:59 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 16:54:26 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_vector	*init_vector(double x, double y, double z, t_info *info)
 	t_vector *v;
 
 	if (!(v = (t_vector*)malloc(sizeof(t_vector))))
-		return (0);
+		finish(info, "Allocation failed");
 	v->x = x;
 	v->y = y;
 	v->z = z;
@@ -26,12 +26,12 @@ t_vector	*init_vector(double x, double y, double z, t_info *info)
 	return (v);
 }
 
-t_vector	*cp_vector(t_vector v2)
+t_vector	*cp_vector(t_vector v2, t_info *info)
 {
 	t_vector *v;
 
 	if (!(v = (t_vector*)malloc(sizeof(t_vector))))
-		return (0);
+		finish(info, "Allocation failed");
 	v->x = v2.x;
 	v->y = v2.y;
 	v->z = v2.z;
@@ -45,7 +45,7 @@ t_map		*init_map(char *argv, t_info *info)
 	t_map	*map;
 
 	if (!(map = (t_map*)malloc(sizeof(t_map))))
-		return (0);
+		finish(info, "Allocation failed");
 	map->size_x = 0;
 	map->size_y = 0;
 	map->nb_nb = -1;
@@ -55,12 +55,12 @@ t_map		*init_map(char *argv, t_info *info)
 	return (map);
 }
 
-t_point		*newlink(t_vector *v)
+t_point		*newlink(t_vector *v, t_info *info)
 {
 	t_point	*new;
 
 	if (!(new = (t_point*)malloc(sizeof(t_point))))
-		finish("Allocation failed");
+		finish(info, "Allocation failed");
 	new->v = v;
 	new->n1 = NULL;
 	new->n2 = NULL;

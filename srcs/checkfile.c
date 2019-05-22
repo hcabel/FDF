@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:31:54 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 16:12:10 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 17:50:49 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	check_hexa(char *ln, int i)
 	return (1);
 }
 
-static int	check_write(char *ln)
+static int	check_write(char *ln, t_info *info)
 {
 	int i;
 
@@ -75,7 +75,7 @@ static int	check_write(char *ln)
 		if (ln[i] == ',')
 		{
 			if (!check_hexa(ln, i))
-				finish("Your hexa is not good");
+				finish(info, "Your hexa is not good");
 			while (ln[i] != ' ' && ln[i] != '\0' && ln[i] != '\n')
 				i++;
 		}
@@ -86,19 +86,19 @@ static int	check_write(char *ln)
 	return (1);
 }
 
-int			check_file(char *ln, t_map *map)
+int			check_file(char *ln, t_map *map, t_info *info)
 {
 	int		tmp;
 
 	if (ln[0] == '\n' || ln[0] == '\0')
-		finish("Error map ! {- a line is empty -}");
+		finish(info, "Error map ! {- a line is empty -}");
 	if (ln[0] == ' ')
-		finish("Error map ! {- a line start with ' ' -}");
-	if (!check_write(ln))
-		finish("Error map ! {- a line is not good write -}");
+		finish(info, "Error map ! {- a line start with ' ' -}");
+	if (!check_write(ln, info))
+		finish(info, "Error map ! {- a line is not good write -}");
 	tmp = count_point(ln);
 	if (tmp != map->nb_nb && map->nb_nb != -1)
-		finish("Error map ! {- Not same number of point in a line-}");
+		finish(info, "Error map ! {- Not same number of point in a line-}");
 	map->nb_nb = tmp;
 	return (0);
 }

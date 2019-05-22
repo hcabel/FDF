@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 13:22:21 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 16:03:31 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 18:02:38 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_vector	rotate(t_vector p, t_cam *r)
 
 int			hexa_decress(int hexa, int nb)
 {
-	int i;
 	int tmp;
 	int result;
 

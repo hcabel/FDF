@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/20 13:22:20 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 18:04:15 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ static int	char2int(char ch)
 	return (-1);
 }
 
-int			hexa2int(char *hexa)
+int			hexa2int(char *hexa, t_info *info)
 {
 	int	i;
-	int	tmp;
 	int	result;
 
 	if (hexa[0] != '0' || hexa[1] != 'x')
-		finish("Hexa error");
+		finish(info, "Hexa error");
 	i = 2;
 	while (hexa[i] == '0')
 		i++;

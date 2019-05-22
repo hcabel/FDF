@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 16:04:17 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/21 18:00:30 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-# include <stdio.h> // DEBUG <--------------------------------------------
 
 typedef struct		s_vector
 {
@@ -157,20 +156,21 @@ int					mouse_move(int x, int y, t_info *info);
 **	struct.c
 */
 t_vector			*init_vector(double x, double y, double z, t_info *info);
-t_vector			*cp_vector(t_vector v2);
+t_vector			*cp_vector(t_vector v2, t_info *info);
 t_map				*init_map(char *argv, t_info *info);
-t_point				*newlink(t_vector *v);
+t_point				*newlink(t_vector *v, t_info *info);
 
 /*
 **	struct2.c
 */
 t_info				*init_info(int argc, char **argv);
-t_mouse				*init_mouse(void);
-t_cam				*init_cam(void);
+t_cam				*init_cam(t_info *info);
+t_mouse				*init_mouse(t_info *info);
 
 /*
 **	parsing.c
 */
+t_point				*getref(t_point *map, int x, int y);
 t_point				*parsing(t_map *map, int fd, t_info *info);
 
 /*
@@ -184,7 +184,7 @@ void				isometric_view(t_vector *start, t_vector *end
 /*
 **	main.c
 */
-int					finish(char *reason);
+int					finish(t_info *info, char *reason);
 
 /*
 **	display_map.c
@@ -208,7 +208,7 @@ t_img				*init_image(t_info *info);
 /*
 **	color.c
 */
-int					hexa2int(char *hexa);
+int					hexa2int(char *hexa, t_info *info);
 double				get_percent(int start, int end, int current);
 int					set_color(int c1, int c2, double percent);
 
@@ -221,6 +221,11 @@ void				add_hud_string(t_info *info);
 /*
 **	checkfile.c
 */
-int					check_file(char *ln, t_map *map);
+int					check_file(char *ln, t_map *map, t_info *info);
+
+/*
+**	free.c
+*/
+void				free_info(t_info *info);
 
 #endif

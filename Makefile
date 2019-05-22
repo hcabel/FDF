@@ -6,7 +6,7 @@
 #    By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/21 11:09:36 by hcabel            #+#    #+#              #
-#    Updated: 2019/05/20 10:48:01 by hcabel           ###   ########.fr        #
+#    Updated: 2019/05/22 11:53:17 by hcabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DL				=	yes
 ifeq ($(DEBUG), yes) 
 	MSG			=	echo "\033[0;31m/!\\ Warning /!\\ \
 						\033[0;36mDebug mode ON\033[0;35m"
-	FLAGS		=   -Wextra -g
+	FLAGS		=   -g
 else
 	FLAGS		=   -Wall -Wextra -Werror
 endif
@@ -54,7 +54,8 @@ SOURCES			=	main.c			\
 					line.c			\
 					color.c			\
 					hud.c			\
-					checkfile.c
+					checkfile.c		\
+					free.c
 
 INCLUDES		=	-I $(INCLUDE_REP)/ -I libft/$(INCLUDE_REP)
 LIB				=	-L /usr/local/lib/
