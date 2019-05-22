@@ -57,7 +57,7 @@ SOURCES			=	main.c			\
 					checkfile.c		\
 					free.c
 
-INCLUDES		=	-I $(INCLUDE_REP)/ -I libft/$(INCLUDE_REP)
+INCLUDES		=	-I $(INCLUDE_REP)/ -I libft/$(INCLUDE_REP) -I minilibx/
 LIB				=	-L /usr/local/lib/
 FRAMEWORK		=	-framework OpenGL -framework Appkit
 
@@ -71,7 +71,7 @@ all: update $(NAME)
 	$(MSG)
 
 $(NAME): mkdir make $(OBJECTS) 
-	gcc $(FLAGS) -o $(NAME) $(OBJECTS) $(LIB) -lmlx $(FRAMEWORK) libft/libft.a
+	gcc $(FLAGS) -o $(NAME) $(OBJECTS) $(LIB) $(FRAMEWORK) libft/libft.a minilibx/libmlx.a
 	
 mkdir:
 	mkdir -p $(OBJECT_REP)
