@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/22 11:56:04 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:36:06 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_cam	*init_cam(t_info *info)
 	cam->offsety = WIN_SIZE_Y / 2;
 	cam->x = -0.5;
 	cam->y = 0.5;
-	cam->color_modifier = 1;
+	cam->colour_modifier = 1;
 	return (cam);
 }
 
@@ -55,7 +55,7 @@ t_info	*init_info(int argc, char **argv)
 	info->img = init_image(info);
 	info->cam = init_cam(info);
 	info->mouse = init_mouse(info);
-	info->basecolor = (argc == 3 ? hexa2int(argv[2], info) : 0xFFFFFF);
+	info->basecolour = (argc == 3 ? hexa2int(argv[2], info) : 0xFFFFFF);
 	info->map = init_map(argv[1], info);
 	i = 0;
 	if (info->map->nb_nb <= 1)

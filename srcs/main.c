@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 11:46:05 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/22 11:50:05 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:26:33 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				main(int argc, char **argv)
 	if (argc < 2 || argc > 3)
 		finish(info, "");
 	info = init_info(argc, argv);
-	updade_display(info);
+	update_display(info);
 	mlx_hook(info->win_ptr, RED_CROSS, 0, finish, "End !");
 	mlx_hook(info->win_ptr, KEY_PRESS, 0, key_press, info);
 	mlx_hook(info->win_ptr, KEY_RELEASE, 0, key_release, info);

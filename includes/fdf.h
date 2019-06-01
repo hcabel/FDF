@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 18:00:30 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:33:34 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct		s_vector
 	double			x;
 	double			y;
 	double			z;
-	int				color;
-	int				color_is_define;
+	int				colour;
+	int				colour_is_define;
 }					t_vector;
 
 typedef struct		s_point
@@ -71,7 +71,7 @@ typedef struct		s_info
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	int				basecolor;
+	int				basecolour;
 	struct s_img	*img;
 	struct s_map	*map;
 	struct s_cam	*cam;
@@ -87,7 +87,7 @@ typedef struct		s_cam
 	double			zoom;
 	double			speed;
 	double			height_z;
-	int				color_modifier;
+	int				colour_modifier;
 	void			(*projection)(t_vector*, t_vector*, struct s_info*);
 }					t_cam;
 
@@ -103,7 +103,7 @@ typedef struct		s_line
 	int				err2;
 }					t_line;
 
-int					hexa_decress(int hexa, int nb);
+int					hexa_decrease(int hexa, int nb);
 
 # define FDF_END 0
 
@@ -176,7 +176,7 @@ t_point				*parsing(t_map *map, int fd, t_info *info);
 /*
 **	projection.c
 */
-void				parallele_view(t_vector *start, t_vector *end
+void				parallel_view(t_vector *start, t_vector *end
 						, t_info *info);
 void				isometric_view(t_vector *start, t_vector *end
 						, t_info *info);
@@ -189,7 +189,7 @@ int					finish(t_info *info, char *reason);
 /*
 **	display_map.c
 */
-void				updade_display(t_info *info);
+void				update_display(t_info *info);
 void				reset_link(int n, t_point *current, t_info *info);
 void				execute_link(int n, t_point *current, t_info *info);
 
@@ -210,7 +210,7 @@ t_img				*init_image(t_info *info);
 */
 int					hexa2int(char *hexa, t_info *info);
 double				get_percent(int start, int end, int current);
-int					set_color(int c1, int c2, double percent);
+int					set_colour(int c1, int c2, double percent);
 
 /*
 **	HUD.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 13:22:21 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 18:02:38 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:36:41 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_vector	rotate(t_vector p, t_cam *r)
 	return (v);
 }
 
-int			hexa_decress(int hexa, int nb)
+int			hexa_decrease(int hexa, int nb)
 {
 	int tmp;
 	int result;
@@ -56,11 +56,11 @@ int			hexa_decress(int hexa, int nb)
 	return (result);
 }
 
-static int	setcolor(int tmp, t_info *info)
+static int	setcolour(int tmp, t_info *info)
 {
 	int	temp;
 
-	temp = hexa_decress(info->basecolor, tmp + info->cam->color_modifier);
+	temp = hexa_decrease(info->basecolor, tmp + info->cam->color_modifier);
 	if (temp >= 0xFFFFFF)
 		return (0xFFFFFF);
 	else if (temp <= 0x0)
@@ -68,7 +68,7 @@ static int	setcolor(int tmp, t_info *info)
 	return (temp);
 }
 
-static void	setup(t_vector *v, int color, int define, t_info *info)
+static void	setup(t_vector *v, int colour, int define, t_info *info)
 {
 	int tmp;
 
@@ -82,11 +82,11 @@ static void	setup(t_vector *v, int color, int define, t_info *info)
 	v->y *= info->cam->zoom;
 	v->x += info->cam->offsetx;
 	v->y += info->cam->offsety;
-	v->color_is_define = define;
-	if (v->color_is_define == 1)
-		v->color = color;
+	v->colour_is_define = define;
+	if (v->colour_is_define == 1)
+		v->colour = colour;
 	else
-		v->color = setcolor(tmp, info);
+		v->colour = setcolour(tmp, info);
 }
 
 void		isometric_view(t_vector *start, t_vector *end, t_info *info)
@@ -96,7 +96,7 @@ void		isometric_view(t_vector *start, t_vector *end, t_info *info)
 
 	start2 = *start;
 	end2 = *end;
-	setup(&start2, start->color, start->color_is_define, info);
-	setup(&end2, end->color, end->color_is_define, info);
+	setup(&start2, start->colour, start->colour_is_define, info);
+	setup(&end2, end->colour, end->colour_is_define, info);
 	line_trace(start2, end2, info);
 }

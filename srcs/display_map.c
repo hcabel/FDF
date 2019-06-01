@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:52:35 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 17:51:05 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:24:00 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		execute_link(int n, t_point *current, t_info *info)
 	}
 }
 
-void		updade_display(t_info *info)
+void		update_display(t_info *info)
 {
 	ft_bzero(info->img->string, WIN_SIZE_X * WIN_SIZE_Y * 4);
 	reset_point(info->map->start, info);

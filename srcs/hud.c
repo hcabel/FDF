@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:51:30 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 17:57:36 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:38:15 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	add_hud(char **string)
 			{
 				percent = get_percent(WIN_SIZE_Y, 0, (int)y);
 				*(int *)(*(string) + ((x + y * WIN_SIZE_X) * 4)) =
-					set_color(0x222222, 0x303030, percent);
+					set_colour(0x222222, 0x303030, percent);
 			}
 			x++;
 		}

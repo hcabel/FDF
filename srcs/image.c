@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 17:35:04 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 17:58:10 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:37:48 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fill_pixel(t_img *image, int x, int y, int color)
+void	fill_pixel(t_img *image, int x, int y, int colour)
 {
 	if (x < 400 || x >= WIN_SIZE_X || y < 0 || y >= WIN_SIZE_Y)
 		return ;
 	else
-		*(int *)(image->string + ((x + y * WIN_SIZE_X) * 4)) = color;
+		*(int *)(image->string + ((x + y * WIN_SIZE_X) * 4)) = colour;
 }
 
 t_img	*init_image(t_info *info)

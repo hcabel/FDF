@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 17:50:12 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:34:05 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int		key_press(int keycode, t_info *info)
 		info->cam->y = 0;
 	}
 	if (keycode == TWO)
-		info->cam->color_modifier--;
+		info->cam->colour_modifier--;
 	if (keycode == EIGHT)
-		info->cam->color_modifier++;
+		info->cam->colour_modifier++;
 	info->cam->speed += 0.25;
-	updade_display(info);
+	update_display(info);
 	return (0);
 }
 
@@ -39,7 +39,7 @@ int		key_release(int keycode, t_info *info)
 	info->cam->speed = 1;
 	if (keycode == ESC)
 		finish(info, "End !");
-	updade_display(info);
+	update_display(info);
 	return (0);
 }
 
@@ -90,6 +90,6 @@ int		mouse_move(int x, int y, t_info *info)
 			info->cam->zoom = 1;
 	}
 	if (info->mouse->button == 1 || info->mouse->button2 == 2)
-		updade_display(info);
+		update_display(info);
 	return (0);
 }

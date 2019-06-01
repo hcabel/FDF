@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:06:49 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/22 12:49:00 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:37:06 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static t_vector	*init(t_map *map, t_point **start, t_vector *v, char **stock, t_
 		i = 1;
 		while (stock[(int)v2->x][i - 1] != ',')
 			i++;
-		v2->color = hexa2int(stock[(int)v2->x] + i, info);
-		v2->color_is_define = 1;
+		v2->colour = hexa2int(stock[(int)v2->x] + i, info);
+		v2->colour_is_define = 1;
 	}
 	if (v2->z < map->min_z)
 		map->min_z = v2->z;
@@ -54,7 +54,7 @@ static t_vector	*init(t_map *map, t_point **start, t_vector *v, char **stock, t_
 		getref(*start, tmp->v->x - 1, tmp->v->y)->n1 = tmp;
 	if (tmp->v->y > 0)
 		getref(*start, tmp->v->x, tmp->v->y - 1)->n2 = tmp;
-	v2->color_is_define = 0;
+	v2->colour_is_define = 0;
 	v2->x++;
 	return (v2);
 }

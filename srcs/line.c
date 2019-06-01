@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:17:36 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 17:58:37 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:27:06 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	line_process_point(t_info *info, t_line *l, t_vector *p1,
 		get_percent(l->start.x, l->stop.x, (int)p1->x)
 		: get_percent(l->start.y, l->stop.y, (int)p1->y));
 	fill_pixel(info->img, (int)p1->x, (int)p1->y,
-		set_color(p1->color, p2->color, percent));
+		set_colour(p1->color, p2->color, percent));
 	l->err2 = l->err;
 	if (l->err2 > -l->dx)
 	{

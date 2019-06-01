@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:28:50 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 16:54:26 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:35:47 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_vector	*init_vector(double x, double y, double z, t_info *info)
 	v->x = x;
 	v->y = y;
 	v->z = z;
-	v->color_is_define = 0;
-	v->color = info->basecolor;
+	v->colour_is_define = 0;
+	v->colour = info->basecolour;
 	return (v);
 }
 
@@ -35,8 +35,8 @@ t_vector	*cp_vector(t_vector v2, t_info *info)
 	v->x = v2.x;
 	v->y = v2.y;
 	v->z = v2.z;
-	v->color_is_define = v2.color_is_define;
-	v->color = v2.color - (v2.z * 50);
+	v->colour_is_define = v2.colour_is_define;
+	v->colour = v2.colour - (v2.z * 50);
 	return (v);
 }
 
