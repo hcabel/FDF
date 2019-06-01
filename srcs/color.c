@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:22:07 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 15:13:54 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,38 @@ int			set_colour(int c1, int c2, double percent)
 	green = get_light((c1 >> 8) & 0xFF, (c2 >> 8) & 0xFF, percent);
 	blue = get_light(c1 & 0xFF, c2 & 0xFF, percent);
 	return ((red << 16) | (green << 8) | blue);
+}
+
+static int	addcolour_topalette(int **tab, int i, int colour1, int colour2)
+{
+	if (!(tab[i] = (int*)malloc(sizeof(int) * 2)))
+		return (1);
+	tab[i][0] = colour1;
+	tab[i][1] = colour2;
+	return (0);
+}
+
+int			**colour_palette(t_info *info)
+{
+	int **tab;
+	int	i;
+	int	ret;
+
+	if (!(tab = (int**)malloc(sizeof(int*) * 10)))
+		finish(info, "Allocation failed");
+	i = 0;
+	ret = 0;
+	ret += addcolour_topalette(tab, i++, 0xff66ff, 0x33ccff);
+	ret += addcolour_topalette(tab, i++, 0xffff66, 0x00ff66);
+	ret += addcolour_topalette(tab, i++, 0xfb2d60, 0x4ca7ad);
+	ret += addcolour_topalette(tab, i++, 0x555e58, 0x872939);
+	ret += addcolour_topalette(tab, i++, 0xffd9d9, 0xce0000);
+	ret += addcolour_topalette(tab, i++, 0x3b80f0, 0x7b0b9b);
+	ret += addcolour_topalette(tab, i++, 0x6d1950, 0xbd5f45);
+	ret += addcolour_topalette(tab, i++, 0x307c99, 0xf07c99);
+	ret += addcolour_topalette(tab, i++, 0x7cd861, 0xff839b);
+	ret += addcolour_topalette(tab, i++, 0xff66cc, 0x26e8cc);
+	if (ret != 0)
+		finish(info, "Allocation failed");
+	return (tab);
 }

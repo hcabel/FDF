@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:34:05 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 14:57:15 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		key_press(int keycode, t_info *info)
 		info->cam->x = 0;
 		info->cam->y = 0;
 	}
-	if (keycode == TWO)
+	if (keycode == TWO && info->cam->colour_modifier > 0)
 		info->cam->colour_modifier--;
-	if (keycode == EIGHT)
+	if (keycode == EIGHT && info->cam->colour_modifier < 9)
 		info->cam->colour_modifier++;
 	info->cam->speed += 0.25;
 	update_display(info);

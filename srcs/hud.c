@@ -6,13 +6,13 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:51:30 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:38:15 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 15:02:44 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	add_hud_string(t_info *info)
+void		add_hud_string(t_info *info)
 {
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 50, 25, 0xF40099, "Mouse :");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 50, 0x1FFFFF,
@@ -28,20 +28,20 @@ void	add_hud_string(t_info *info)
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 50, 225, 0xF40099,
 		"Keyboard :");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 250, 0x1FFFFF,
-		"Up arrow");
+		"Up arrow and Down arrow");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 100, 275, 0xFFFFFF,
-		"increase height");
+		"Change height");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 300, 0x1FFFFF,
-		"Down arrow");
+		"Numpad 8 and Numpad 2");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 100, 325, 0xFFFFFF,
-		"decrease height");
+		"Change colour palette");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 350, 0x1FFFFF,
 		"Space bar");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 100, 375, 0xFFFFFF,
 		"Top view");
 }
 
-void	add_hud(char **string)
+void		add_hud(char **string, t_info *info)
 {
 	double	percent;
 	int		x;
@@ -53,7 +53,15 @@ void	add_hud(char **string)
 		x = 0;
 		while (x < HUD_SIZE)
 		{
-			if ((x > HUD_SIZE - HUD_BORDER_SIZE && x < HUD_SIZE)
+			if ((x > (HUD_SIZE / 10) && x < HUD_SIZE - HUD_BORDER_SIZE - (HUD_SIZE / 10))
+				&& (y > (WIN_SIZE_Y / 20) * 18 && y <(WIN_SIZE_Y / 20) * 19))
+			{
+				percent = get_percent((HUD_SIZE / 10), HUD_SIZE - HUD_BORDER_SIZE, (int)x);
+				*(int *)(*(string) + ((x + y * WIN_SIZE_X) * 4)) =
+					set_colour(info->cam->colour_palette[info->cam->colour_modifier][0],
+						info->cam->colour_palette[info->cam->colour_modifier][1], percent);
+			}
+			else if ((x > HUD_SIZE - HUD_BORDER_SIZE && x < HUD_SIZE)
 				|| (y < HUD_BORDER_SIZE || y > WIN_SIZE_Y - HUD_BORDER_SIZE))
 				*(int *)(*(string) + ((x + y * WIN_SIZE_X) * 4)) = 0xAAAAAA;
 			else

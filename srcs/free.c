@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 16:39:40 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/22 12:49:46 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/05/31 12:29:40 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static void	free_map(t_map *map)
 {
 	if (map->start != NULL)
 		free_chaine(map, map->start);
-	free(map);
 }
 
 void	free_info(t_info *info)

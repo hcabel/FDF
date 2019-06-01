@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 13:22:21 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:42:09 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 15:01:38 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,53 +30,17 @@ t_vector	rotate(t_vector p, t_cam *r)
 	return (v);
 }
 
-int			hexa_decrease(int hexa, int nb)
-{
-	int tmp;
-	int result;
-
-	if (nb < 0)
-	{
-		nb *= -1;
-		tmp = nb / 16;
-		result = hexa;
-		while (tmp-- > 0)
-			result /= 16;
-		result -= nb % 15;
-		return (result);
-	}
-	tmp = nb / 16;
-	result = hexa;
-	while (tmp > 0)
-	{
-		result *= 16;
-		tmp--;
-	}
-	result += nb % 16;
-	return (result);
-}
-
-static int	setcolour(int tmp, t_info *info)
-{
-	int	temp;
-
-	temp = hexa_decrease(info->basecolour, tmp + info->cam->colour_modifier);
-	if (temp >= 0xFFFFFF)
-		return (0xFFFFFF);
-	else if (temp <= 0x0)
-		return (0x0);
-	return (temp);
-}
-
 static void	setup(t_vector *v, int colour, int define, t_info *info)
 {
-	int tmp;
+	int index;
+	int z;
 
+	z = v->z;
+	index = info->cam->colour_modifier;
 	v->x -= (double)(info->map->size_x) / 2;
 	v->y -= (double)(info->map->size_y) / 2;
 	v->z *= (double)info->cam->height_z;
-	tmp = (fabs(v->z) == 0 ? 1 : v->z);
-	v->z -= (double)(info->map->min_z + info->map->max_z) / 2;
+	v->z -= (double)(info->map->smallest->z + info->map->biggest->z) / 2;
 	*v = rotate(*v, info->cam);
 	v->x *= info->cam->zoom;
 	v->y *= info->cam->zoom;
@@ -86,7 +50,8 @@ static void	setup(t_vector *v, int colour, int define, t_info *info)
 	if (v->colour_is_define == 1)
 		v->colour = colour;
 	else
-		v->colour = setcolour(tmp, info);
+		v->colour = set_colour(info->map->smallest->colour, info->map->biggest->colour
+			, get_percent(info->map->smallest->z, info->map->biggest->z, z));
 }
 
 void		isometric_view(t_vector *start, t_vector *end, t_info *info)

@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:06:49 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:37:06 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 14:59:06 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_point			*getref(t_point *map, int x, int y)
 	return (ref);
 }
 
-static t_vector	*init(t_map *map, t_point **start, t_vector *v, char **stock, t_info *info)
+static t_vector	*initi(t_map *map, t_point **start, t_vector *v, char **stock, t_info *info)
 {
 	t_point		*tmp;
 	t_vector	*v2;
@@ -43,10 +43,10 @@ static t_vector	*init(t_map *map, t_point **start, t_vector *v, char **stock, t_
 		v2->colour = hexa2int(stock[(int)v2->x] + i, info);
 		v2->colour_is_define = 1;
 	}
-	if (v2->z < map->min_z)
-		map->min_z = v2->z;
-	else if (v2->z > map->max_z)
-		map->max_z = v2->z;
+	if (map->smallest == NULL || v2->z < map->smallest->z)
+		map->smallest = v2;
+	else if (map->biggest == NULL || v2->z > map->biggest->z)
+		map->biggest = v2;
 	tmp = newlink(cp_vector(*v2, info), info);
 	if (*start == NULL)
 		*start = tmp;
@@ -75,7 +75,7 @@ t_point			*parsing(t_map *map, int fd, t_info *info)
 		v->x = 0;
 		stock = ft_strsplit(line, ' ');
 		while (stock[(int)v->x])
-			v = init(map, &start, v, stock, info);
+			v = initi(map, &start, v, stock, info);
 		v->y++;
 		free(line);
 	}
