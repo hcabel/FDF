@@ -6,7 +6,7 @@
 #    By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/21 11:09:36 by hcabel            #+#    #+#              #
-#    Updated: 2019/05/22 11:53:17 by hcabel           ###   ########.fr        #
+#    Updated: 2019/06/01 12:01:47 by hcabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ SOURCES			=	main.c			\
 					checkfile.c		\
 					free.c
 
-INCLUDES		=	-I $(INCLUDE_REP)/ -I libft/$(INCLUDE_REP) -I minilibx/
+INCLUDES		=	-I $(INCLUDE_REP)/ -I libft/$(INCLUDE_REP)
 LIB				=	-L /usr/local/lib/
 FRAMEWORK		=	-framework OpenGL -framework Appkit
 
@@ -71,7 +71,7 @@ all: update $(NAME)
 	$(MSG)
 
 $(NAME): mkdir make $(OBJECTS) 
-	gcc $(FLAGS) -o $(NAME) $(OBJECTS) $(LIB) $(FRAMEWORK) libft/libft.a minilibx/libmlx.a
+	gcc $(FLAGS) -o $(NAME) $(OBJECTS) $(LIB) -lmlx $(FRAMEWORK) libft/libft.a
 	
 mkdir:
 	mkdir -p $(OBJECT_REP)
