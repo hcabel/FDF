@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 13:22:21 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 18:02:38 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 13:18:45 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,63 +30,25 @@ t_vector	rotate(t_vector p, t_cam *r)
 	return (v);
 }
 
-int			hexa_decress(int hexa, int nb)
-{
-	int tmp;
-	int result;
-
-	if (nb < 0)
-	{
-		nb *= -1;
-		tmp = nb / 16;
-		result = hexa;
-		while (tmp-- > 0)
-			result /= 16;
-		result -= nb % 15;
-		return (result);
-	}
-	tmp = nb / 16;
-	result = hexa;
-	while (tmp > 0)
-	{
-		result *= 16;
-		tmp--;
-	}
-	result += nb % 16;
-	return (result);
-}
-
-static int	setcolor(int tmp, t_info *info)
-{
-	int	temp;
-
-	temp = hexa_decress(info->basecolor, tmp + info->cam->color_modifier);
-	if (temp >= 0xFFFFFF)
-		return (0xFFFFFF);
-	else if (temp <= 0x0)
-		return (0x0);
-	return (temp);
-}
-
 static void	setup(t_vector *v, int color, int define, t_info *info)
 {
-	int tmp;
+	int index;
+	int z;
 
+	z = v->z;
+	index = info->cam->color_modifier;
 	v->x -= (double)(info->map->size_x) / 2;
 	v->y -= (double)(info->map->size_y) / 2;
 	v->z *= (double)info->cam->height_z;
-	tmp = (fabs(v->z) == 0 ? 1 : v->z);
-	v->z -= (double)(info->map->min_z + info->map->max_z) / 2;
+	v->z -= (double)(info->map->smallest->z + info->map->biggest->z) / 2;
 	*v = rotate(*v, info->cam);
 	v->x *= info->cam->zoom;
 	v->y *= info->cam->zoom;
 	v->x += info->cam->offsetx;
 	v->y += info->cam->offsety;
 	v->color_is_define = define;
-	if (v->color_is_define == 1)
-		v->color = color;
-	else
-		v->color = setcolor(tmp, info);
+	v->color = (((info->map->smallest->color - info->map->biggest->color) /
+		info->map->biggest->z) * z ) + info->map->biggest->color;
 }
 
 void		isometric_view(t_vector *start, t_vector *end, t_info *info)

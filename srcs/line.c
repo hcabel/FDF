@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:17:36 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 17:58:37 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 12:43:08 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ static int	line_process_point(t_info *info, t_line *l, t_vector *p1,
 		&& (p2->x < HUD_SIZE || p2->x >= WIN_SIZE_X
 			|| p2->y < 0 || p2->y >= WIN_SIZE_Y))
 		return (1);
-	percent = (l->dx > l->dy ?
-		get_percent(l->start.x, l->stop.x, (int)p1->x)
+	percent = (l->dx > l->dy ? get_percent(l->start.x, l->stop.x, (int)p1->x)
 		: get_percent(l->start.y, l->stop.y, (int)p1->y));
 	fill_pixel(info->img, (int)p1->x, (int)p1->y,
-		set_color(p1->color, p2->color, percent));
+		set_color(l->start.color, l->stop.color, percent));
 	l->err2 = l->err;
 	if (l->err2 > -l->dx)
 	{

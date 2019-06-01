@@ -6,13 +6,13 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/22 11:56:04 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 12:35:52 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_cam	*init_cam(t_info *info)
+static t_cam	*init_cam(t_info *info, int color)
 {
 	t_cam	*cam;
 
@@ -25,11 +25,13 @@ t_cam	*init_cam(t_info *info)
 	cam->offsety = WIN_SIZE_Y / 2;
 	cam->x = -0.5;
 	cam->y = 0.5;
-	cam->color_modifier = 1;
+	cam->color_modifier = 0;
+	cam->basecolor = color;
+	cam->color_palette = color_palette(info); 
 	return (cam);
 }
 
-t_mouse	*init_mouse(t_info *info)
+static t_mouse	*init_mouse(t_info *info)
 {
 	t_mouse	*mouse;
 
@@ -42,7 +44,7 @@ t_mouse	*init_mouse(t_info *info)
 	return (mouse);
 }
 
-t_info	*init_info(int argc, char **argv)
+t_info			*init(int argc, char **argv)
 {
 	t_info	*info;
 	int		i;
@@ -53,9 +55,8 @@ t_info	*init_info(int argc, char **argv)
 	info->win_ptr = mlx_new_window(info->mlx_ptr, WIN_SIZE_X,
 		WIN_SIZE_Y, WIN_NAME);
 	info->img = init_image(info);
-	info->cam = init_cam(info);
+	info->cam = init_cam(info, (argc == 3 ? hexa2int(argv[2], info) : 0xFFF));
 	info->mouse = init_mouse(info);
-	info->basecolor = (argc == 3 ? hexa2int(argv[2], info) : 0xFFFFFF);
 	info->map = init_map(argv[1], info);
 	i = 0;
 	if (info->map->nb_nb <= 1)

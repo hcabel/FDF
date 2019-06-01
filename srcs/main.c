@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 11:46:05 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/22 11:50:05 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 12:54:42 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ int				main(int argc, char **argv)
 	info = NULL;
 	if (argc < 2 || argc > 3)
 		finish(info, "");
-	info = init_info(argc, argv);
-	updade_display(info);
+	info = init(argc, argv);
 	mlx_hook(info->win_ptr, RED_CROSS, 0, finish, "End !");
 	mlx_hook(info->win_ptr, KEY_PRESS, 0, key_press, info);
 	mlx_hook(info->win_ptr, KEY_RELEASE, 0, key_release, info);
 	mlx_hook(info->win_ptr, MOUSE_PRESS, 0, mouse_press, info);
 	mlx_hook(info->win_ptr, MOUSE_RELEASE, 0, mouse_release, info);
 	mlx_hook(info->win_ptr, MOUSE_MOVE, 0, mouse_move, info);
+	updade_display(info);
 	mlx_loop(info->mlx_ptr);
 	if (info != NULL)
 		free_info(info);

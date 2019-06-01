@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 18:04:15 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 13:13:53 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,37 @@ int			set_color(int c1, int c2, double percent)
 	green = get_light((c1 >> 8) & 0xFF, (c2 >> 8) & 0xFF, percent);
 	blue = get_light(c1 & 0xFF, c2 & 0xFF, percent);
 	return ((red << 16) | (green << 8) | blue);
+}
+
+int			**color_palette(t_info *info)
+{
+	int **tab;
+
+	if (!(tab = (int**)malloc(sizeof(int*) * 6)))
+		finish(info, "Allocation failed");
+	if (!(tab[0] = (int*)malloc(sizeof(int) * 2)))
+		finish(info, "Allocation failed");
+	tab[0][0] = 0xff66ff;
+	tab[0][1] = 0x33ccff;
+	if (!(tab[1] = (int*)malloc(sizeof(int) * 2)))
+		finish(info, "Allocation failed");
+	tab[1][0] = 0xffff66;
+	tab[1][1] = 0x00ff66;
+	if (!(tab[2] = (int*)malloc(sizeof(int) * 2)))
+		finish(info, "Allocation failed");
+	tab[2][0] = 0xfb2d60;
+	tab[2][1] = 0x4ca7ad;
+	if (!(tab[3] = (int*)malloc(sizeof(int) * 2)))
+		finish(info, "Allocation failed");
+	tab[3][0] = 0x555e58;
+	tab[3][1] = 0x872939;
+	if (!(tab[4] = (int*)malloc(sizeof(int) * 2)))
+		finish(info, "Allocation failed");
+	tab[4][0] = 0xffd9d9;
+	tab[4][1] = 0xce0000;
+	if (!(tab[5] = (int*)malloc(sizeof(int) * 2)))
+		finish(info, "Allocation failed");
+	tab[5][0] = 0x3b80f0;
+	tab[5][1] = 0x7b0b9b;
+	return (tab);
 }

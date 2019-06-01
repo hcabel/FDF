@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/21 18:00:30 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 12:54:21 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
+
+# include <stdio.h> // DEBUG
 
 typedef struct		s_vector
 {
@@ -41,8 +43,8 @@ typedef struct		s_point
 typedef struct		s_map
 {
 	struct s_point	*start;
-	int				max_z;
-	int				min_z;
+	struct s_vector	*biggest;
+	struct s_vector	*smallest;
 	int				nb_nb;
 	int				size_y;
 	int				size_x;
@@ -71,7 +73,6 @@ typedef struct		s_info
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	int				basecolor;
 	struct s_img	*img;
 	struct s_map	*map;
 	struct s_cam	*cam;
@@ -88,6 +89,10 @@ typedef struct		s_cam
 	double			speed;
 	double			height_z;
 	int				color_modifier;
+	int				basecolor;
+	int				**color_palette;
+	int				start;
+	int				end;
 	void			(*projection)(t_vector*, t_vector*, struct s_info*);
 }					t_cam;
 
@@ -102,10 +107,6 @@ typedef struct		s_line
 	int				err;
 	int				err2;
 }					t_line;
-
-int					hexa_decress(int hexa, int nb);
-
-# define FDF_END 0
 
 /*
 **	MODIFY here
@@ -163,9 +164,7 @@ t_point				*newlink(t_vector *v, t_info *info);
 /*
 **	struct2.c
 */
-t_info				*init_info(int argc, char **argv);
-t_cam				*init_cam(t_info *info);
-t_mouse				*init_mouse(t_info *info);
+t_info				*init(int argc, char **argv);
 
 /*
 **	parsing.c
@@ -211,11 +210,12 @@ t_img				*init_image(t_info *info);
 int					hexa2int(char *hexa, t_info *info);
 double				get_percent(int start, int end, int current);
 int					set_color(int c1, int c2, double percent);
+int					**color_palette(t_info *info);
 
 /*
 **	HUD.c
 */
-void				add_hud(char **string);
+void				add_hud(char **string, t_info *info);
 void				add_hud_string(t_info *info);
 
 /*
