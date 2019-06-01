@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   struct2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 15:06:39 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 15:43:25 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_cam	*init_cam(t_info *info, int colour)
+static t_cam	*init_cam(t_info *info, int colour1, int colour2)
 {
 	t_cam	*cam;
 
@@ -26,8 +26,9 @@ static t_cam	*init_cam(t_info *info, int colour)
 	cam->x = -0.5;
 	cam->y = 0.5;
 	cam->colour_modifier = 0;
-	cam->basecolour = colour;
-	cam->colour_palette = colour_palette(info); 
+	cam->colour1 = colour1;
+	cam->colour2 = colour2;
+	cam->colour_palette = colour_palette(info);
 	return (cam);
 }
 
@@ -51,11 +52,13 @@ t_info			*init(int argc, char **argv)
 
 	if (!(info = (t_info*)malloc(sizeof(t_info))))
 		finish(info, "Allocation failed");
+	info->argc = argc;
 	info->mlx_ptr = mlx_init();
 	info->win_ptr = mlx_new_window(info->mlx_ptr, WIN_SIZE_X,
 		WIN_SIZE_Y, WIN_NAME);
 	info->img = init_image(info);
-	info->cam = init_cam(info, (argc == 3 ? hexa2int(argv[2], info) : 0xFFF));
+	info->cam = init_cam(info, (argc >= 3 ? hexa2int(argv[2], info) : 0xFFFFFF)
+		, (argc == 4 ? hexa2int(argv[3], info) : 0xFFFFFF));
 	info->mouse = init_mouse(info);
 	info->map = init_map(argv[1], info);
 	i = 0;

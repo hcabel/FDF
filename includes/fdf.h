@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 15:05:38 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 15:38:54 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct		s_info
 	struct s_map	*map;
 	struct s_cam	*cam;
 	struct s_mouse	*mouse;
+	int				argc;
 }					t_info;
 
 typedef struct		s_cam
@@ -89,7 +90,8 @@ typedef struct		s_cam
 	double			speed;
 	double			height_z;
 	int				colour_modifier;
-	int				basecolour;
+	int				colour1;
+	int				colour2;
 	int				**colour_palette;
 	int				start;
 	int				end;

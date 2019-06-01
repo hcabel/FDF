@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:28:50 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:59:26 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 15:39:13 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_vector	*init_vector(double x, double y, double z, t_info *info)
 	v->y = y;
 	v->z = z;
 	v->colour_is_define = 0;
-	v->colour = info->cam->basecolour;
+	v->colour = 0;
 	return (v);
 }
 
