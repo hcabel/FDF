@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:17:36 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:27:06 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 14:43:20 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	line_process_point(t_info *info, t_line *l, t_vector *p1,
 		get_percent(l->start.x, l->stop.x, (int)p1->x)
 		: get_percent(l->start.y, l->stop.y, (int)p1->y));
 	fill_pixel(info->img, (int)p1->x, (int)p1->y,
-		set_colour(p1->color, p2->color, percent));
+		set_colour(p1->colour, p2->colour, percent));
 	l->err2 = l->err;
 	if (l->err2 > -l->dx)
 	{

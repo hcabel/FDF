@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 13:22:21 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:36:41 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/01 14:42:09 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	setcolour(int tmp, t_info *info)
 {
 	int	temp;
 
-	temp = hexa_decrease(info->basecolor, tmp + info->cam->color_modifier);
+	temp = hexa_decrease(info->basecolour, tmp + info->cam->colour_modifier);
 	if (temp >= 0xFFFFFF)
 		return (0xFFFFFF);
 	else if (temp <= 0x0)
