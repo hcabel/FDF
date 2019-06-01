@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 11:46:05 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 15:40:06 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 15:44:56 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				finish(t_info *info, char *reason)
 	if (info != NULL)
 		free_info(info);
 	if (*reason == '\0')
-		ft_putendl("usage : ./fdf [sourcesfile] [hexa color]");
+		ft_putendl("usage : ./fdf [sourcesfile] [hexa color 1] [hexa color 2]");
 	else
 		ft_putendl_fd(reason, 2);
 	exit(0);
