@@ -6,13 +6,13 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:51:30 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 13:04:16 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:44:47 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	add_hud_string(t_info *info)
+void		add_hud_string(t_info *info)
 {
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 50, 25, 0xF40099, "Mouse :");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 50, 0x1FFFFF,
@@ -28,20 +28,20 @@ void	add_hud_string(t_info *info)
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 50, 225, 0xF40099,
 		"Keyboard :");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 250, 0x1FFFFF,
-		"Up arrow");
+		"Up arrow and Down arrow");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 100, 275, 0xFFFFFF,
-		"increase height");
+		"Change height");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 300, 0x1FFFFF,
-		"Down arrow");
+		"Numpad 8 and Numpad 2");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 100, 325, 0xFFFFFF,
-		"decrease height");
+		"Change color palette");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 75, 350, 0x1FFFFF,
 		"Space bar");
 	mlx_string_put(info->mlx_ptr, info->win_ptr, 100, 375, 0xFFFFFF,
 		"Top view");
 }
 
-void	add_hud(char **string, t_info *info)
+void		add_hud(char **string, t_info *info)
 {
 	double	percent;
 	int		x;

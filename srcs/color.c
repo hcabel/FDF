@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 13:13:53 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:28:50 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,35 +73,36 @@ int			set_color(int c1, int c2, double percent)
 	return ((red << 16) | (green << 8) | blue);
 }
 
+static int	addcolor_topalette(int **tab, int i, int color1, int color2)
+{
+	if (!(tab[i] = (int*)malloc(sizeof(int) * 2)))
+		return (1);
+	tab[i][0] = color1;
+	tab[i][1] = color2;
+	return (0);
+}
+
 int			**color_palette(t_info *info)
 {
 	int **tab;
+	int	i;
+	int	ret;
 
-	if (!(tab = (int**)malloc(sizeof(int*) * 6)))
+	if (!(tab = (int**)malloc(sizeof(int*) * 10)))
 		finish(info, "Allocation failed");
-	if (!(tab[0] = (int*)malloc(sizeof(int) * 2)))
+	i = 0;
+	ret = 0;
+	ret += addcolor_topalette(tab, i++, 0xff66ff, 0x33ccff);
+	ret += addcolor_topalette(tab, i++, 0xffff66, 0x00ff66);
+	ret += addcolor_topalette(tab, i++, 0xfb2d60, 0x4ca7ad);
+	ret += addcolor_topalette(tab, i++, 0x555e58, 0x872939);
+	ret += addcolor_topalette(tab, i++, 0xffd9d9, 0xce0000);
+	ret += addcolor_topalette(tab, i++, 0x3b80f0, 0x7b0b9b);
+	ret += addcolor_topalette(tab, i++, 0x6d1950, 0xbd5f45);
+	ret += addcolor_topalette(tab, i++, 0x307c99, 0xf07c99);
+	ret += addcolor_topalette(tab, i++, 0x7cd861, 0xff839b);
+	ret += addcolor_topalette(tab, i++, 0xff66cc, 0x26e8cc);
+	if (ret != 0)
 		finish(info, "Allocation failed");
-	tab[0][0] = 0xff66ff;
-	tab[0][1] = 0x33ccff;
-	if (!(tab[1] = (int*)malloc(sizeof(int) * 2)))
-		finish(info, "Allocation failed");
-	tab[1][0] = 0xffff66;
-	tab[1][1] = 0x00ff66;
-	if (!(tab[2] = (int*)malloc(sizeof(int) * 2)))
-		finish(info, "Allocation failed");
-	tab[2][0] = 0xfb2d60;
-	tab[2][1] = 0x4ca7ad;
-	if (!(tab[3] = (int*)malloc(sizeof(int) * 2)))
-		finish(info, "Allocation failed");
-	tab[3][0] = 0x555e58;
-	tab[3][1] = 0x872939;
-	if (!(tab[4] = (int*)malloc(sizeof(int) * 2)))
-		finish(info, "Allocation failed");
-	tab[4][0] = 0xffd9d9;
-	tab[4][1] = 0xce0000;
-	if (!(tab[5] = (int*)malloc(sizeof(int) * 2)))
-		finish(info, "Allocation failed");
-	tab[5][0] = 0x3b80f0;
-	tab[5][1] = 0x7b0b9b;
 	return (tab);
 }

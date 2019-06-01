@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 13:22:21 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 13:18:45 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/01 14:08:08 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ static void	setup(t_vector *v, int color, int define, t_info *info)
 	v->x += info->cam->offsetx;
 	v->y += info->cam->offsety;
 	v->color_is_define = define;
-	v->color = (((info->map->smallest->color - info->map->biggest->color) /
-		info->map->biggest->z) * z ) + info->map->biggest->color;
+	if (v->color_is_define == 1)
+		v->color = color;
+	else
+		v->color = set_color(info->map->smallest->color, info->map->biggest->color
+			, get_percent(info->map->smallest->z, info->map->biggest->z, z));
 }
 
 void		isometric_view(t_vector *start, t_vector *end, t_info *info)
