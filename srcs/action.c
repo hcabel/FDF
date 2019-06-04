@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:57:15 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/04 11:25:19 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		key_press(int keycode, t_info *info)
 {
+	if (keycode == ESC)
+		finish(info, "End !");
 	if (keycode == UP)
 		info->cam->height_z += 0.01 * info->cam->speed;
 	if (keycode == DOWN)
@@ -25,20 +27,21 @@ int		key_press(int keycode, t_info *info)
 		info->cam->x = 0;
 		info->cam->y = 0;
 	}
-	if (keycode == TWO && info->cam->colour_modifier > 0)
-		info->cam->colour_modifier--;
-	if (keycode == EIGHT && info->cam->colour_modifier < 9)
-		info->cam->colour_modifier++;
+	if (keycode == TWO)
+	{
+		if (info->cam->colour_modifier > 0)
+			info->cam->colour_modifier--;
+		else
+			info->cam->colour_modifier = 9;
+	}
+	if (keycode == EIGHT)
+	{
+		if (info->cam->colour_modifier < 9)
+			info->cam->colour_modifier++;
+		else
+			info->cam->colour_modifier = 0;
+	}
 	info->cam->speed += 0.25;
-	update_display(info);
-	return (0);
-}
-
-int		key_release(int keycode, t_info *info)
-{
-	info->cam->speed = 1;
-	if (keycode == ESC)
-		finish(info, "End !");
 	update_display(info);
 	return (0);
 }

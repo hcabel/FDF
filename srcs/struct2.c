@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 15:06:39 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/03 14:07:47 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_info			*init(int argc, char **argv)
 	info->map = init_map(argv[1], info);
 	i = 0;
 	if (info->map->nb_nb <= 1)
-		finish (info, "Error map ! {- Please add mor point -}");
+		finish (info, "Error map ! {- Please add more points -}");
 	while (info->map->size_x * (i + 50) < WIN_SIZE_X - HUD_SIZE
 		&& info->map->size_y * (i + 50) < WIN_SIZE_Y)
 		i++;

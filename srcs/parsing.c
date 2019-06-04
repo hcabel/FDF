@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:06:49 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:59:06 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/03 12:33:32 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_point			*parsing(t_map *map, int fd, t_info *info)
 		while (stock[(int)v->x])
 			v = initi(map, &start, v, stock, info);
 		v->y++;
+		free(stock);
 		free(line);
 	}
 	if (ret == -1)
