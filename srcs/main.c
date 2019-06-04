@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 11:46:05 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/04 11:21:12 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/04 11:27:04 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				finish(t_info *info, char *reason)
 	if (info != NULL)
 		free_info(info);
 	if (*reason == '\0')
-		ft_putendl("usage : ./fdf [sourcesfile] [hexa color]");
+		ft_putendl("usage : ./fdf [sourcesfile] [hexa color 1] [hexa color 2]");
 	else
 		ft_putendl_fd(reason, 2);
 	exit(0);
@@ -29,7 +29,7 @@ int				main(int argc, char **argv)
 	t_info	*info;
 
 	info = NULL;
-	if (argc < 2 || argc > 3)
+	if (argc < 2 || argc > 4)
 		finish(info, "");
 	info = init(argc, argv);
 	mlx_hook(info->win_ptr, RED_CROSS, 0, finish, "End !");
