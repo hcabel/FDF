@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:51:30 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 15:02:44 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/04 11:55:43 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ void		add_hud(char **string, t_info *info)
 		while (x < HUD_SIZE)
 		{
 			if ((x > (HUD_SIZE / 10) && x < HUD_SIZE - HUD_BORDER_SIZE - (HUD_SIZE / 10))
-				&& (y > (WIN_SIZE_Y / 20) * 18 && y <(WIN_SIZE_Y / 20) * 19))
+				&& (y > (WIN_SIZE_Y / 20) * 18 && y < (WIN_SIZE_Y / 20) * 19))
 			{
 				percent = get_percent((HUD_SIZE / 10), HUD_SIZE - HUD_BORDER_SIZE, (int)x);
 				*(int *)(*(string) + ((x + y * WIN_SIZE_X) * 4)) =
-					set_colour(info->cam->colour_palette[info->cam->colour_modifier][0],
-						info->cam->colour_palette[info->cam->colour_modifier][1], percent);
+					set_colour(info->cam->palette[info->cam->colour_mod][0],
+						info->cam->palette[info->cam->colour_mod][1], percent);
 			}
 			else if ((x > HUD_SIZE - HUD_BORDER_SIZE && x < HUD_SIZE)
 				|| (y < HUD_BORDER_SIZE || y > WIN_SIZE_Y - HUD_BORDER_SIZE))

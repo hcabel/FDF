@@ -1,30 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/08 12:06:49 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/04 15:22:19 by sylewis          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "fdf.h"
 
-t_point			*getref(t_point *map, int x, int y)
-{
-	t_point *ref;
 
-	ref = map;
-	while (x-- > 0)
-		if (ref->n1)
-			ref = ref->n1;
-	while (y-- > 0)
-		if (ref->n2)
-			ref = ref->n2;
-	return (ref);
-}
+
 
 static t_vector	*initi(t_map *map, t_point **start, t_vector *v, char **stock, t_info *info)
 {
@@ -59,6 +36,8 @@ static t_vector	*initi(t_map *map, t_point **start, t_vector *v, char **stock, t
 	return (v2);
 }
 
+//static t_vector	*initi2()
+
 t_point			*parsing(t_map *map, int fd, t_info *info)
 {
 	t_point		*start;
@@ -77,14 +56,14 @@ t_point			*parsing(t_map *map, int fd, t_info *info)
 		while (stock[(int)v->x])
 			v = initi(map, &start, v, stock, info);
 		v->y++;
-		ft_memdel((void**)&stock);
-		ft_memdel((void**)&line);
+		free(stock);
+		free(line);
 	}
 	if (ret == -1)
 		finish(info, "Error file !");
 	map->size_x = v->x - 1;
 	map->size_y = v->y - 1;
 	close(fd);
-	ft_memdel((void**)&v);
+	free(v);
 	return (start);
 }

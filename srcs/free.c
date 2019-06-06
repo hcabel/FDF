@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 16:39:40 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/31 12:29:40 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/04 15:22:56 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	free_img(t_img *img)
 {
-	free(img->ptr);
-	free(img->string);
-	free(img);
+	ft_memdel((void**)&(img->ptr));
+	ft_memdel((void**)&(img->string));
+	ft_memdel((void**)&img);
 }
 
 static void	free_line(t_point *start)
@@ -34,8 +34,8 @@ static void	free_line(t_point *start)
 			tmp = tmp->n2;
 		}
 		previous->n2 = NULL;
-		free(tmp->v);
-		free(tmp);
+		ft_memdel((void**)&tmp->v);
+		ft_memdel((void**)&tmp);
 	}
 }
 
@@ -57,14 +57,14 @@ static void	free_map(t_map *map)
 		free_chaine(map, map->start);
 }
 
-void	free_info(t_info *info)
+void		free_info(t_info *info)
 {
 	if (info->img != NULL)
 		free_img(info->img);
 	if (info->map != NULL)
 		free_map(info->map);
-	free(info->cam);
-	free(info->mouse);
-	free(info->mlx_ptr);
-	free(info->win_ptr);
+	ft_memdel((void**)&info->cam);
+	ft_memdel((void**)&info->mouse);
+	ft_memdel((void**)&info->mlx_ptr);
+	ft_memdel((void**)&info->win_ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/04 11:27:06 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/04 16:03:44 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_cam	*init_cam(t_info *info, int colour1, int colour2)
 {
 	t_cam	*cam;
 
-	if (!(cam = (t_cam*)malloc(sizeof(t_cam))))
+	if (!(cam = (t_cam*)ft_memalloc(sizeof(t_cam))))
 		finish(info, "Allocation failed");
 	cam->projection = isometric_view;
 	cam->speed = 1;
@@ -25,10 +25,10 @@ static t_cam	*init_cam(t_info *info, int colour1, int colour2)
 	cam->offsety = WIN_SIZE_Y / 2;
 	cam->x = -0.5;
 	cam->y = 0.5;
-	cam->colour_modifier = 0;
+	cam->colour_mod = 0;
 	cam->colour1 = colour1;
 	cam->colour2 = colour2;
-	cam->colour_palette = colour_palette(info);
+	cam->palette = colour_palette(info);
 	return (cam);
 }
 
@@ -36,7 +36,7 @@ static t_mouse	*init_mouse(t_info *info)
 {
 	t_mouse	*mouse;
 
-	if (!(mouse = (t_mouse*)malloc(sizeof(t_mouse))))
+	if (!(mouse = (t_mouse*)ft_memalloc(sizeof(t_mouse))))
 		finish(info, "Allocation failed");
 	mouse->x = 0;
 	mouse->y = 0;
@@ -50,7 +50,7 @@ t_info			*init(int argc, char **argv)
 	t_info	*info;
 	int		i;
 
-	if (!(info = (t_info*)malloc(sizeof(t_info))))
+	if (!(info = (t_info*)ft_memalloc(sizeof(t_info))))
 		finish(info, "Allocation failed");
 	info->argc = argc;
 	info->mlx_ptr = mlx_init();
@@ -63,7 +63,7 @@ t_info			*init(int argc, char **argv)
 	info->map = init_map(argv[1], info);
 	i = 0;
 	if (info->map->nb_nb <= 1)
-		finish (info, "Error map ! {- Please add more points -}");
+		finish(info, "Error map ! {- Please add more points -}");
 	while (info->map->size_x * (i + 50) < WIN_SIZE_X - HUD_SIZE
 		&& info->map->size_y * (i + 50) < WIN_SIZE_Y)
 		i++;

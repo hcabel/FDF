@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:52:35 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 15:38:19 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/04 11:54:59 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,18 @@ void		update_display(t_info *info)
 	reset_point(info->map->start, info);
 	if (info->argc == 2)
 	{
-		info->map->biggest->colour = info->cam->colour_palette[info->cam->colour_modifier][0];
-		info->map->smallest->colour = info->cam->colour_palette[info->cam->colour_modifier][1];
+		info->map->big->colour = info->cam->palette[info->cam->colour_mod][0];
+		info->map->small->colour = info->cam->palette[info->cam->colour_mod][1];
 	}
 	else if (info->argc == 3)
 	{
-		info->map->biggest->colour = info->cam->colour1;
-		info->map->smallest->colour = info->cam->colour_palette[info->cam->colour_modifier][1];
+		info->map->big->colour = info->cam->colour1;
+		info->map->small->colour = info->cam->palette[info->cam->colour_mod][1];
 	}
 	else
 	{
-		info->map->biggest->colour = info->cam->colour1;
-		info->map->smallest->colour = info->cam->colour2;
+		info->map->big->colour = info->cam->colour1;
+		info->map->small->colour = info->cam->colour2;
 	}
 	connect_point(info->map->start, info);
 	add_hud(&info->img->string, info);

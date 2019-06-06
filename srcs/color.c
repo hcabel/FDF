@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/03 17:14:41 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/04 15:49:18 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int			set_colour(int c1, int c2, double percent)
 
 static int	addcolour_topalette(int **tab, int i, int colour1, int colour2)
 {
-	if (!(tab[i] = (int*)malloc(sizeof(int) * 2)))
+	if (!(tab[i] = (int*)ft_memalloc(sizeof(int) * 2)))
 		return (1);
 	tab[i][0] = colour1;
 	tab[i][1] = colour2;
@@ -88,7 +88,7 @@ int			**colour_palette(t_info *info)
 	int	i;
 	int	ret;
 
-	if (!(tab = (int**)malloc(sizeof(int*) * 10)))
+	if (!(tab = (int**)ft_memalloc(sizeof(int*) * 10)))
 		finish(info, "Allocation failed");
 	i = 0;
 	ret = 0;

@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 17:35:04 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 14:58:35 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/04 15:50:09 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_img	*init_image(t_info *info)
 {
 	t_img	*img;
 
-	if (!(img = (t_img*)malloc(sizeof(t_img))))
+	if (!(img = (t_img*)ft_memalloc(sizeof(t_img))))
 		return (0);
 	img->ptr = mlx_new_image(info->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y);
 	img->string = mlx_get_data_addr(img->ptr,

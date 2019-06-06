@@ -6,16 +6,33 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/04 11:25:19 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/06 13:34:21 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		key_press(int keycode, t_info *info)
+static void	colour_press(int keycode, t_info *info)
 {
-	if (keycode == ESC)
-		finish(info, "End !");
+	if (keycode == TWO)
+	{
+		if (info->cam->colour_mod > 0)
+			info->cam->colour_mod--;
+		else
+			info->cam->colour_mod = 9;
+	}
+	if (keycode == EIGHT)
+	{
+		if (info->cam->colour_mod < 9)
+			info->cam->colour_mod++;
+		else
+			info->cam->colour_mod = 0;
+	}
+	info->cam->speed += 0.25;
+}
+
+int			key_press(int keycode, t_info *info)
+{
 	if (keycode == UP)
 		info->cam->height_z += 0.01 * info->cam->speed;
 	if (keycode == DOWN)
@@ -27,26 +44,14 @@ int		key_press(int keycode, t_info *info)
 		info->cam->x = 0;
 		info->cam->y = 0;
 	}
-	if (keycode == TWO)
-	{
-		if (info->cam->colour_modifier > 0)
-			info->cam->colour_modifier--;
-		else
-			info->cam->colour_modifier = 9;
-	}
-	if (keycode == EIGHT)
-	{
-		if (info->cam->colour_modifier < 9)
-			info->cam->colour_modifier++;
-		else
-			info->cam->colour_modifier = 0;
-	}
+	if (keycode == TWO || keycode == EIGHT)
+		colour_press(keycode, info);
 	info->cam->speed += 0.25;
 	update_display(info);
 	return (0);
 }
 
-int		mouse_press(int button, int x, int y, t_info *info)
+int			mouse_press(int button, int x, int y, t_info *info)
 {
 	(void)x;
 	if (y < 0)
@@ -58,7 +63,7 @@ int		mouse_press(int button, int x, int y, t_info *info)
 	return (0);
 }
 
-int		mouse_release(int button, int x, int y, t_info *info)
+int			mouse_release(int button, int x, int y, t_info *info)
 {
 	(void)x;
 	(void)y;
@@ -69,7 +74,7 @@ int		mouse_release(int button, int x, int y, t_info *info)
 	return (0);
 }
 
-int		mouse_move(int x, int y, t_info *info)
+int			mouse_move(int x, int y, t_info *info)
 {
 	info->mouse->lastx = info->mouse->x;
 	info->mouse->lasty = info->mouse->y;
