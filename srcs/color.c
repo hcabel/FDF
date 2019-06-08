@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/04 15:49:18 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/08 14:50:01 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			set_colour(int c1, int c2, double percent)
 	blue = get_light(c1 & 0xFF, c2 & 0xFF, percent);
 	return ((red << 16) | (green << 8) | blue);
 }
-
+/*
 static int	addcolour_topalette(int **tab, int i, int colour1, int colour2)
 {
 	if (!(tab[i] = (int*)ft_memalloc(sizeof(int) * 2)))
@@ -106,31 +106,27 @@ int			**colour_palette(t_info *info)
 		finish(info, "Allocation failed");
 	return (tab);
 }
-/*
-int		**colour_palette(t_cam *cam)
-{
-	int tab[10][2];
-
-	tab[0][0] = 0xff66ff;
-	tab[0][1] = 0x33ccff;
-	tab[1][0] = 0xffff66;
-	tab[1][1] = 0x00ff66;
-	tab[2][0] = 0xfb2d60;
-	tab[2][1] = 0x4ca7ad;
-	tab[3][0] = 0x555e58;
-	tab[3][1] = 0x872939;
-	tab[4][0] = 0xffd9d9;
-	tab[4][1] = 0xce0000;
-	tab[5][0] = 0x3b80f0;
-	tab[5][1] = 0x7b0b9b;
-	tab[6][0] = 0x6d1950;
-	tab[6][1] = 0xbd5f45;
-	tab[7][0] = 0x307c99;
-	tab[7][1] = 0xf07c99;
-	tab[8][0] = 0x7cd861;
-	tab[8][1] = 0xff839b;
-	tab[9][0] = 0xff66cc;
-	tab[9][1] = 0x26e8cc;
-	return (tab);
-}
 */
+void		colour_palette(t_cam *cam)
+{
+	cam->palette[0][0] = 0xff66ff;
+	cam->palette[0][1] = 0x33ccff;
+	cam->palette[1][0] = 0xffff66;
+	cam->palette[1][1] = 0x00ff66;
+	cam->palette[2][0] = 0xfb2d60;
+	cam->palette[2][1] = 0x4ca7ad;
+	cam->palette[3][0] = 0x555e58;
+	cam->palette[3][1] = 0x872939;
+	cam->palette[4][0] = 0xffd9d9;
+	cam->palette[4][1] = 0xce0000;
+	cam->palette[5][0] = 0x3b80f0;
+	cam->palette[5][1] = 0x7b0b9b;
+	cam->palette[6][0] = 0x6d1950;
+	cam->palette[6][1] = 0xbd5f45;
+	cam->palette[7][0] = 0x307c99;
+	cam->palette[7][1] = 0xf07c99;
+	cam->palette[8][0] = 0x7cd861;
+	cam->palette[8][1] = 0xff839b;
+	cam->palette[9][0] = 0xff66cc;
+	cam->palette[9][1] = 0x26e8cc;
+}

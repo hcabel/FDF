@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:06:49 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/07 16:15:13 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/08 16:28:15 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_vector	*initi(t_map *map, t_point **start, t_vector *v, char **stock, t
 	int			i;
 
 	v2 = cp_vector(*v, info);
-	//free(v);
+	//ft_memdel((void**)&v);
 	v2->z = ft_atoi(stock[(int)v2->x]);
 	if (ft_strchr(stock[(int)v2->x], ','))
 	{
@@ -77,7 +77,7 @@ t_point			*parsing(t_map *map, int fd, t_info *info)
 		while (stock[(int)v->x])
 			v = initi(map, &start, v, stock, info);
 		v->y++;
-		ft_memdel((void**)&stock);
+		//ft_memdel((void**)&stock);
 		//ft_memdel((void**)&line);
 	}
 	if (ret == -1)

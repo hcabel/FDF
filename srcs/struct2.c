@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/04 16:03:44 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/08 14:44:45 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_cam	*init_cam(t_info *info, int colour1, int colour2)
 	cam->colour_mod = 0;
 	cam->colour1 = colour1;
 	cam->colour2 = colour2;
-	cam->palette = colour_palette(info);
+	colour_palette(cam);
 	return (cam);
 }
 
