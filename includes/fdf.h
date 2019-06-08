@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/01 15:38:54 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/08 14:50:06 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct		s_point
 typedef struct		s_map
 {
 	struct s_point	*start;
-	struct s_vector	*biggest;
-	struct s_vector	*smallest;
+	struct s_vector	*big;
+	struct s_vector	*small;
 	int				nb_nb;
 	int				size_y;
 	int				size_x;
@@ -89,10 +89,10 @@ typedef struct		s_cam
 	double			zoom;
 	double			speed;
 	double			height_z;
-	int				colour_modifier;
+	int				colour_mod;
 	int				colour1;
 	int				colour2;
-	int				**colour_palette;
+	int				palette[10][2];
 	int				start;
 	int				end;
 	void			(*projection)(t_vector*, t_vector*, struct s_info*);
@@ -212,7 +212,7 @@ t_img				*init_image(t_info *info);
 int					hexa2int(char *hexa, t_info *info);
 double				get_percent(int start, int end, int current);
 int					set_colour(int c1, int c2, double percent);
-int					**colour_palette(t_info *info);
+void				colour_palette(t_cam *cam);
 
 /*
 **	HUD.c
