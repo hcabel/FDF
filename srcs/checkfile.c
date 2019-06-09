@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkfile.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:31:54 by hcabel            #+#    #+#             */
-/*   Updated: 2019/05/31 14:46:43 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/06/09 18:39:50 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,14 @@ int			check_file(char *ln, t_map *map, t_info *info)
 	int		tmp;
 
 	if (ln[0] == '\n' || ln[0] == '\0')
-		finish(info, "Error map ! {- a line is empty -}");
-	if (ln[0] == ' ')
-		finish(info, "Error map ! {- a line start with ' ' -}");
+		finish(info, "Map error! {- a line is empty -}");
+	//if (ln[0] == ' ')
+	//	finish(info, "Error map ! {- a line start with ' ' -}");
 	if (!check_write(ln, info))
-		finish(info, "Error map ! {- a line is not good write -}");
+		finish(info, "Map error!");
 	tmp = count_point(ln);
 	if (tmp != map->nb_nb && map->nb_nb != -1)
-		finish(info, "Error map ! {- Not same number of point in a line-}");
+		finish(info, "Map error! {- Differing numbers of points per line-}");
 	map->nb_nb = tmp;
 	return (0);
 }

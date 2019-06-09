@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/08 14:50:06 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/09 15:04:57 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ typedef struct		s_line
 /*
 **	MODIFY here
 */
-# define WIN_NAME "FDF by hcabel"
+# define WIN_NAME "FDF"
 # define WIN_SIZE_X 1920
 # define WIN_SIZE_Y 1080
 # define HUD_SIZE 400
@@ -138,6 +138,8 @@ typedef struct		s_line
 # define SPACE 49
 # define TWO 84
 # define EIGHT 91
+# define TWO_2 19
+# define EIGHT_2 28
 
 # define RED_CROSS 17
 # define KEY_PRESS 2
