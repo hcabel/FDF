@@ -86,14 +86,14 @@ int			mouse_release(int button, int x, int y, t_info *info)
 {
 	(void)x;
 	(void)y;
-	if (button == 1)
+	if (button == LEFT_CLICK)
 		info->mouse->button = 0;
-	if (button == 2)
+	if (button == RIGHT_CLICK)
 		info->mouse->button2 = 0;
-	if (button == 4)
-		info->mouse->button = 0;
-	if (button == 5)
-		info->mouse->button = 0;
+	//if (button == UP_WHEEL)
+	//	info->mouse->button = 0;
+	//if (button == DOWN_WHEEL)
+	//	info->mouse->button = 0;
 	return (0);
 }
 
@@ -120,7 +120,7 @@ int			mouse_move(int x, int y, t_info *info)
 		if (info->cam->zoom < 1)
 			info->cam->zoom = 1;
 	}
-	if (info->mouse->button == 1 || info->mouse->button2 == 2)
+	if (info->mouse->button == 2 || info->mouse->button2 == 2)
 		update_display(info);
 	return (0);
 }

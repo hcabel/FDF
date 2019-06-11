@@ -33,7 +33,7 @@ int			hexa2int(char *hexa, t_info *info)
 	i = 2;
 	while (hexa[i] == '0')
 		i++;
-	result = char2int(hexa[i]);
+/*??*/	result = char2int(hexa[i]); /*??*/
 	i++;
 	while (((hexa[i] >= '0' && hexa[i] <= '9')
 		|| (hexa[i] >= 'A' && hexa[i] <= 'F')
@@ -53,12 +53,12 @@ double		get_percent(int start, int end, int current)
 	distance = end - start;
 	return ((distance == 0) ? 1.0 : (placement / distance));
 }
-
+/*merge get_light et set_colour ? */
 static int	get_light(int start, int end, double percentage)
 {
 	return ((int)((1 - percentage) * start + percentage * end));
 }
-
+/* merge ? */
 int			set_colour(int c1, int c2, double percent)
 {
 	int red;

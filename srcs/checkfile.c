@@ -29,7 +29,7 @@ static int	count_point(char *ln)
 	}
 	return (result);
 }
-
+// problemes ici ? 
 static int	check_hexa(char *ln, int i)
 {
 	int count;
@@ -38,11 +38,12 @@ static int	check_hexa(char *ln, int i)
 		return (0);
 	i += 3;
 	count = 1;
-	while (ft_isalpha(ln[i]) && ln[i] != ' ')
+	while (ft_isalnum(ln[i]) && ln[i] != ' ')
 	{
-		if (!((ln[i] >= '0' && ln[i] <= '9')
-			|| (ln[i] >= 'A' && ln[i] <= 'F')
-			|| (ln[i] >= 'a' && ln[i] <= 'f')))
+	//	if (!((ln[i] >= '0' && ln[i] <= '9')
+	//		|| (ln[i] >= 'A' && ln[i] <= 'F')
+	//		|| (ln[i] >= 'a' && ln[i] <= 'f')))
+		if ((ln[i] <= 'F' && ln[i] <= 'a') || ln[i] <= 'f')
 			return (0);
 		if (count > 6)
 			return (0);
@@ -51,7 +52,7 @@ static int	check_hexa(char *ln, int i)
 	}
 	return (1);
 }
-
+// problemes ici ^ ?
 static int	check_write(char *ln, t_info *info)
 {
 	int i;
