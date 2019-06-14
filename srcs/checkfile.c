@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:31:54 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/09 18:39:50 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/11 14:53:04 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ static int	check_write(char *ln, t_info *info)
 	int i;
 
 	i = 0;
-	while (!ft_isdigit(ln[i]))
-		i++;
-	if (!ft_isdigit(ln[i]))
-		return (0);
-	i = 0;
 	while (ln[i])
 	{
 		while ((ln[i] == ' ' || ln[i] == '-') && ln[i])
@@ -76,7 +71,7 @@ static int	check_write(char *ln, t_info *info)
 		if (ln[i] == ',')
 		{
 			if (!check_hexa(ln, i))
-				finish(info, "Your hexa is not good");
+				finish(info, "Errors in hexa");
 			while (ln[i] != ' ' && ln[i] != '\0' && ln[i] != '\n')
 				i++;
 		}
@@ -93,8 +88,6 @@ int			check_file(char *ln, t_map *map, t_info *info)
 
 	if (ln[0] == '\n' || ln[0] == '\0')
 		finish(info, "Map error! {- a line is empty -}");
-	//if (ln[0] == ' ')
-	//	finish(info, "Error map ! {- a line start with ' ' -}");
 	if (!check_write(ln, info))
 		finish(info, "Map error!");
 	tmp = count_point(ln);
