@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/11 11:12:35 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/15 15:58:09 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int			key_press(int keycode, t_info *info)
 
 int			mouse_press(int button, int x, int y, t_info *info)
 {
+	
 	if (y < 0)
 		return (0);
 	if (button == LEFT_CLICK)
@@ -61,21 +62,23 @@ int			mouse_press(int button, int x, int y, t_info *info)
 		info->mouse->button2 = RIGHT_CLICK;
 	else if (button == DOWN_WHEEL)
 	{
-		//info->cam->offsetx += (x / 50);
-		//info->cam->offsety += (y / 50);
+		//info->cam->offsetx += (WIN_SIZE_X / 2) + info->mouse->lastx;
+		//info->cam->offsety += (WIN_SIZE_Y / 2 + info->mouse->lasty);
 		info->mouse->button = DOWN_WHEEL;
-		info->cam->zoom -= 3;
+		info->cam->zoom -= 2;
 		info->cam->speed += 0.25;
 		if (info->cam->zoom < 1)
 			info->cam->zoom = 1;
 	}
 	else if (button == UP_WHEEL)
 	{
-		//info->cam->offsetx += (x / 50);
-		//info->cam->offsety += (y / 50);
+		info->cam->offsetx += (WIN_SIZE_X / 2 - x);
+		info->cam->offsety += (WIN_SIZE_Y / 2 - y);
 		info->mouse->button = UP_WHEEL;
-		info->cam->zoom += 3;
+		info->cam->zoom += 2;
 		info->cam->speed += 0.25;
+		info->mouse->lastx = info->mouse->x;
+		info->mouse->lasty = info->mouse->y;
 	}
 	if (info->mouse->button == 4 || info->mouse->button == 5)
 		update_display(info);
