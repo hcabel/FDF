@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/15 15:58:09 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/16 16:06:25 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int			mouse_press(int button, int x, int y, t_info *info)
 		info->mouse->button2 = RIGHT_CLICK;
 	else if (button == DOWN_WHEEL)
 	{
-		//info->cam->offsetx += (WIN_SIZE_X / 2) + info->mouse->lastx;
-		//info->cam->offsety += (WIN_SIZE_Y / 2 + info->mouse->lasty);
+		info->cam->offsetx += (WIN_SIZE_X / 2) - x;
+		info->cam->offsety += (WIN_SIZE_Y / 2) - y;
 		info->mouse->button = DOWN_WHEEL;
 		info->cam->zoom -= 2;
 		info->cam->speed += 0.25;
