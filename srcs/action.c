@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 15:11:45 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/16 16:06:25 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/20 17:35:21 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,28 @@ int			mouse_press(int button, int x, int y, t_info *info)
 		info->mouse->button2 = RIGHT_CLICK;
 	else if (button == DOWN_WHEEL)
 	{
-		info->cam->offsetx += (WIN_SIZE_X / 2) - x;
-		info->cam->offsety += (WIN_SIZE_Y / 2) - y;
+		printf("x = %d ", x);
+		printf("y = %d\n", y);
+		info->cam->offsetx -= x / (WIN_SIZE_X - HUD_SIZE) * (info->cam->zoom - 1);
+		printf("offsetx = %f ", info->cam->offsetx);
+		info->cam->offsety -= y / (WIN_SIZE_Y) * (info->cam->zoom - 1);
+		printf("offsety = %f\n", info->cam->offsety);
 		info->mouse->button = DOWN_WHEEL;
-		info->cam->zoom -= 2;
+		info->cam->zoom -= 20;
 		info->cam->speed += 0.25;
 		if (info->cam->zoom < 1)
 			info->cam->zoom = 1;
 	}
 	else if (button == UP_WHEEL)
 	{
-		info->cam->offsetx += (WIN_SIZE_X / 2 - x);
-		info->cam->offsety += (WIN_SIZE_Y / 2 - y);
+		printf("x = %d ", x);
+		printf("y = %d\n", y);
+		info->cam->offsetx -= x / (WIN_SIZE_X - HUD_SIZE) * (info->cam->zoom - 1);
+		printf("offsetx = %f ", info->cam->offsetx);
+		info->cam->offsety -= y / (WIN_SIZE_Y) * (info->cam->zoom - 1);
+		printf("offsety = %f\n", info->cam->offsety);
 		info->mouse->button = UP_WHEEL;
-		info->cam->zoom += 2;
+		info->cam->zoom += 20;
 		info->cam->speed += 0.25;
 		info->mouse->lastx = info->mouse->x;
 		info->mouse->lasty = info->mouse->y;

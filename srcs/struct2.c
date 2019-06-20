@@ -6,7 +6,7 @@
 /*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 10:13:38 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/09 16:16:34 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/20 17:13:33 by sylewis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_info			*init(int argc, char **argv)
 	while (info->map->size_x * (i + 50) < WIN_SIZE_X - HUD_SIZE
 		&& info->map->size_y * (i + 50) < WIN_SIZE_Y)
 		i++;
+	printf("size x = %d, size y = %d\n", info->map->size_x, info->map->size_y);
 	info->cam->zoom = (i == 0 ? 3 : i);
 	return (info);
 }
