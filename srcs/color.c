@@ -3,46 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 14:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/18 13:59:39 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/30 02:26:51 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static int	char2int(char ch)
-{
-	if (ch >= '0' && ch <= '9')
-		return (ch - '0');
-	if (ch >= 'A' && ch <= 'F')
-		return (ch - 'A' + 10);
-	if (ch >= 'a' && ch <= 'f')
-		return (ch - 'a' + 10);
-	return (-1);
-}
-
-int			hexa2int(char *hexa, t_info *info)
-{
-	int	i;
-	int	result;
-
-	if (hexa[0] != '0' || hexa[1] != 'x')
-		finish(info, "Hexa error");
-	i = 2;
-	while (hexa[i] == '0')
-		i++;
-	result = char2int(hexa[i]);
-	if (result == -1)
-		return (-1);
-	i++;
-	while (((hexa[i] >= '0' && hexa[i] <= '9')
-		|| (hexa[i] >= 'A' && hexa[i] <= 'F')
-		|| (hexa[i] >= 'a' && hexa[i] <= 'f')) && i < 9)
-		result = result * 16 + char2int(hexa[i++]);
-	return (result);
-}
 
 double		get_percent(int start, int end, int current)
 {
@@ -55,11 +23,13 @@ double		get_percent(int start, int end, int current)
 	distance = end - start;
 	return ((distance == 0) ? 1.0 : (placement / distance));
 }
+
 /*merge get_light et set_colour ? */
 static int	get_light(int start, int end, double percentage)
 {
 	return ((int)((1 - percentage) * start + percentage * end));
 }
+
 /* merge ? */
 int			set_colour(int c1, int c2, double percent)
 {

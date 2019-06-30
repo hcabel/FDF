@@ -3,20 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 16:39:40 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/11 14:46:36 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/30 04:02:13 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void		free_tab(char **tab)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (tab[y])
+	{
+		free(tab[y]);
+		tab[y] = NULL;
+		y++;
+	}
+	free(tab);
+}
+
 static void	free_img(t_img *img)
 {
-	ft_memdel((void**)&(img->ptr));
-	ft_memdel((void**)&(img->string));
-	ft_memdel((void**)&img);
+	free(img->ptr);
+	free(img->string);
+	free(img);
 }
 
 static void	free_line(t_point *start)
@@ -34,8 +49,8 @@ static void	free_line(t_point *start)
 			tmp = tmp->n2;
 		}
 		previous->n2 = NULL;
-		ft_memdel((void**)&tmp->v);
-		ft_memdel((void**)&tmp);
+		free(tmp->v);
+		free(tmp);
 	}
 }
 
@@ -49,12 +64,16 @@ static void	free_chaine(t_map *map, t_point *start)
 		free_line(getref(start, max, 0));
 		max--;
 	}
+	//free(start);
 }
 
 void	free_map(t_map *map)
 {
 	if (map->start != NULL)
 		free_chaine(map, map->start);
+	//free(map->big);
+	//free(map->small);
+	//free(map);
 }
 
 void		free_info(t_info *info)
@@ -63,8 +82,9 @@ void		free_info(t_info *info)
 		free_img(info->img);
 	if (info->map != NULL)
 		free_map(info->map);
-	ft_memdel((void**)&info->cam);
-	ft_memdel((void**)&info->mouse);
-	ft_memdel((void**)&info->mlx_ptr);
-	ft_memdel((void**)&info->win_ptr);
+	free(info->cam);
+	free(info->mouse);
+	free(info->mlx_ptr);
+	free(info->win_ptr);
+	//free(info);
 }

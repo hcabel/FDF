@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:28:50 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/11 15:01:41 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/30 04:01:11 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ t_vector	*init_vector(double x, double y, double z, t_info *info)
 	return (v);
 }
 
-t_vector	*cp_vector(t_vector v2, t_info *info)
+t_vector	*cp_vector(t_vector v2)
 {
 	t_vector *v;
 
 	if (!(v = (t_vector*)ft_memalloc(sizeof(t_vector))))
-		finish(info, "Allocation failed");
+		return (NULL);
 	v->x = v2.x;
 	v->y = v2.y;
 	v->z = v2.z;
@@ -55,12 +55,12 @@ t_map		*init_map(char *argv, t_info *info)
 	return (map);
 }
 
-t_point		*newlink(t_vector *v, t_info *info)
+t_point		*newlink(t_vector *v)
 {
 	t_point	*new;
 
 	if (!(new = (t_point*)ft_memalloc(sizeof(t_point))))
-		finish(info, "Allocation failed");
+		return (NULL);
 	new->v = v;
 	new->n1 = NULL;
 	new->n2 = NULL;

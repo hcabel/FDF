@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sylewis <sylewis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/06/09 15:04:57 by sylewis          ###   ########.fr       */
+/*   Updated: 2019/06/30 02:32:32 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ typedef struct		s_line
 **	MODIFY here
 */
 # define WIN_NAME "FDF"
-# define WIN_SIZE_X 1920
-# define WIN_SIZE_Y 1080
+# define WIN_SIZE_X 1080
+# define WIN_SIZE_Y 720
 # define HUD_SIZE 400
 
 /*
@@ -161,9 +161,9 @@ int					mouse_move(int x, int y, t_info *info);
 **	struct.c
 */
 t_vector			*init_vector(double x, double y, double z, t_info *info);
-t_vector			*cp_vector(t_vector v2, t_info *info);
+t_vector			*cp_vector(t_vector v2);
 t_map				*init_map(char *argv, t_info *info);
-t_point				*newlink(t_vector *v, t_info *info);
+t_point				*newlink(t_vector *v);
 
 /*
 **	struct2.c
@@ -231,5 +231,6 @@ int					check_file(char *ln, t_map *map, t_info *info);
 **	free.c
 */
 void				free_info(t_info *info);
+void				free_tab(char **tab);
 
 #endif
