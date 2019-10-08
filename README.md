@@ -6,4 +6,4 @@ Les fonctions autoriser :
 Open, Read, Write, Close, Malloc, Free, Perror, Strerror, Exit,
 Toutes les fonctions de la lib math ,Toutes les fonctions de la miniLibX.
 
-
+![screen map 42.fdf](http://github.com/hcabel/printf/img/screen1)
