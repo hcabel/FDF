@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 19:00:13 by hcabel            #+#    #+#             */
-/*   Updated: 2019/09/21 19:07:23 by hcabel           ###   ########.fr       */
+/*   Updated: 2019/10/08 16:46:07 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define W_NAME "FDF by hcabel & sylewis"
 # define W_WID 1920
 # define W_HEIGHT 1080
-# define HUD_WID 1600
+# define HUD_WID 400
 
 typedef struct		s_map
 {
