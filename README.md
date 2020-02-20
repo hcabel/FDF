@@ -20,3 +20,6 @@ Il suffit de crée de maps comme cela :
 Bref se que vous voulez sachant que chaque nouveaux nombre est un nouveaux point et que la valeur correspond
 à sont axes de hauteur ( z ).
 ( la map doit êtres un carré ou un rectangle :D )
+
+pour lancer:
+make && ./fdf world/mars.fdf
