@@ -6,7 +6,7 @@
 #    By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/21 11:09:36 by hcabel            #+#    #+#              #
-#    Updated: 2019/09/21 17:24:14 by hcabel           ###   ########.fr        #
+#    Updated: 2020/02/21 08:54:36 by hcabel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ NAME			=	fdf
 OBJECT_REP		=	objects
 INCLUDE_REP		=	includes
 SOURCES_REP		=	srcs
-MINILIBX_REP	=	/usr/local/
+MINILIBX_REP	=	minilibx/
 
 INCLUDES_FILE	=	fdf.h
 
@@ -47,10 +47,10 @@ SOURCES			=	main.c		\
 					line.c		\
 					view.c		\
 					hud.c		\
-					color.c		
+					color.c
 
-INCLUDES		=	-I $(MINILIBX_REP)include -I $(INCLUDE_REP)/ -I libft/$(INCLUDE_REP)
-LIB				=	-L $(MINILIBX_REP)lib
+INCLUDES		=	-I $(MINILIBX_REP) -I $(INCLUDE_REP)/ -I libft/$(INCLUDE_REP)
+LIB				=	-L $(MINILIBX_REP) libft/libftprintf.a
 FRAMEWORK		=	-framework OpenGL -framework Appkit
 
 OBJECTS			=	$(addprefix $(OBJECT_REP)/, $(SOURCES:.c=.o))
@@ -63,7 +63,7 @@ all: update $(NAME)
 	$(MSG)
 
 $(NAME): mkdir make $(OBJECTS)
-	gcc $(FLAGS) -o $(NAME) $(OBJECTS) $(LIB) -lmlx $(FRAMEWORK) libft/libft.a 
+	gcc $(FLAGS) -o $(NAME) $(OBJECTS) $(LIB) -lmlx $(FRAMEWORK)
 
 mkdir:
 	mkdir -p $(OBJECT_REP)

@@ -6,7 +6,7 @@
 /*   By: hcabel <hcabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 11:30:18 by hcabel            #+#    #+#             */
-/*   Updated: 2019/09/21 19:13:33 by hcabel           ###   ########.fr       */
+/*   Updated: 2020/02/21 09:05:37 by hcabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,12 @@ int			end(t_info *info)
 	return (0);
 }
 
-static int	out(char *str, t_info *info)
+static int	out(char *str)
 {
 	if (*str == '\0')
 		ft_putendl("./fdf [maps]");
 	else
 		ft_putendl(str);
-	free(info->map.map);
-	free(info->hud.string);
-	free(info->hud.ptr);
-	free(info->view.string);
-	free(info->view.ptr);
 	exit(0);
 	return (1);
 }
@@ -88,9 +83,9 @@ int			main(int argc, char **argv)
 	t_info	info;
 
 	if (argc == 1)
-		return (out("", &info));
+		return (out(""));
 	if (setup(&info, argv))
-		return (out("setup error", &info));
+		return (out("Setup error"));
 	mlx_hook(info.win_ptr, KEY_PRESS, 0, key_press, &info);
 	mlx_hook(info.win_ptr, RED_CROSS, 0, end, &info);
 	mlx_hook(info.win_ptr, MOUSE_PRESS, 0, mouse_press, &info);
