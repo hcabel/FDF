@@ -23,3 +23,5 @@ Bref se que vous voulez sachant que chaque nouveaux nombre est un nouveaux point
 
 pour lancer:
 make && ./fdf world/mars.fdf
+
+![screen map mars.fdf](img/screen2)
