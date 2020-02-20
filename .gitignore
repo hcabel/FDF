@@ -1,6 +1,4 @@
 *.o
-minilibx
-minilibx/*
 libft/*
 libft
 fdf
